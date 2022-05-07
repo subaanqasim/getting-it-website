@@ -123,13 +123,13 @@ const links = [
 
 export default function Navbar() {
   const [opened, toggleOpened] = useBooleanToggle(false)
-  const { classes, cx } = useStyles()
+  const { classes } = useStyles()
 
   const items = links.map((link) => (
     <Link
       key={link.label}
       to={link.link}
-      className={cx(classes.link)}
+      className={classes.link}
       activeClassName={classes.linkActive}
       onClick={() => {
         toggleOpened(false)
