@@ -143,7 +143,7 @@ export default function Navbar() {
     <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
       <Container className={classes.header} size="lg">
         <Link to="/">
-          <img src={logo} alt="" style={{ width: "36px" }} />
+          <img src={logo} alt="" style={{ width: "40px" }} />
         </Link>
         <Group spacing="lg" className={classes.links}>
           {items}
