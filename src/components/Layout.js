@@ -91,7 +91,7 @@ export default function Layout({ children }) {
         styles={{
           Title: (theme) => ({
             root: {
-              color: theme.colors.gray[1],
+              color: theme.colors.gray[0],
             },
           }),
         }}
@@ -99,7 +99,7 @@ export default function Layout({ children }) {
         <GlobalTheme />
         <Navbar />
         {children}
-        <Footer />
+        <Footer fixed={true} />
       </MantineProvider>
     </ColorSchemeProvider>
   )

@@ -12,6 +12,12 @@ export default function GlobalTheme() {
           color:
             theme.colorScheme === "dark"
               ? theme.colors.dark[0]
+              : theme.colors.gray[7],
+        },
+        h1: {
+          color:
+            theme.colorScheme === "dark"
+              ? theme.colors.gray[0]
               : theme.colors.gray[9],
         },
       })}
