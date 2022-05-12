@@ -88,6 +88,7 @@ const useStyles = createStyles((theme) => ({
       paddingLeft: 18,
       paddingRight: 18,
       flex: 1,
+      width: "100%",
     },
   },
 
@@ -99,6 +100,12 @@ const useStyles = createStyles((theme) => ({
 
     "&:hover": {
       backgroundColor: `${theme.colors.dark[4]} !important`,
+    },
+  },
+
+  link: {
+    [BREAKPOINT]: {
+      flex: 1,
     },
   },
 }))
@@ -137,10 +144,11 @@ export default function HeroSection() {
         </Text>
 
         <Group className={classes.controls}>
-          <Link to="/episodes">
+          <Link to="/episodes" className={classes.link}>
             <Button
-              size="xl"
+              // style={{width:}}
               className={classes.control}
+              size="xl"
               variant="gradient"
               gradient={{ from: "blue", to: "cyan" }}
             >
