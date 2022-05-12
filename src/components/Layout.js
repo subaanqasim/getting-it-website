@@ -91,7 +91,10 @@ export default function Layout({ children }) {
         styles={{
           Title: (theme) => ({
             root: {
-              color: theme.colors.gray[0],
+              color:
+                theme.colorScheme === "dark"
+                  ? theme.colors.gray[0]
+                  : theme.colors.gray[9],
             },
           }),
         }}
