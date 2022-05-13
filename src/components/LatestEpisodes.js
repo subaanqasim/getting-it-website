@@ -7,6 +7,8 @@ export default function LatestEpisodes() {
     <Container size="lg">
       <Title order={2}>Latest Episodes</Title>
       <EpisodeCard />
+      <EpisodeCard />
+      <EpisodeCard />
     </Container>
   )
 }
