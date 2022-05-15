@@ -18,7 +18,7 @@ const HEADER_HEIGHT = 60
 const useStyles = createStyles((theme) => ({
   root: {
     position: "relative",
-    zIndex: 1,
+    zIndex: 2,
     border: "none",
     backgroundColor:
       theme.colorScheme === "dark" ? theme.colors.dark[9] : theme.white,
@@ -140,7 +140,7 @@ export default function Navbar() {
   ))
 
   return (
-    <Header height={HEADER_HEIGHT} mb={120} className={classes.root}>
+    <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header} size="lg">
         <Link to="/">
           <img src={logo} alt="" style={{ width: "40px" }} />
