@@ -27,7 +27,9 @@ const useStyles = createStyles((theme) => ({
     "&::before": {
       content: '""',
       backgroundImage:
-        "linear-gradient(90deg, rgba(16,17,19,1) 0%, rgba(16,17,19,1) 40%, rgba(0,0,0,0) 85%)",
+        theme.colorScheme === "dark"
+          ? "linear-gradient(90deg, rgba(16,17,19,1) 0%, rgba(16,17,19,1) 40%, rgba(0,0,0,0) 85%)"
+          : "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0) 85%)",
       position: "absolute",
       top: "0px",
       right: "0px",
@@ -48,7 +50,7 @@ const useStyles = createStyles((theme) => ({
 
   inner: {
     position: "relative",
-    maxWidth: 720,
+    maxWidth: 800,
     zIndex: 2,
     pointerEvents: "none",
     // paddingTop: "10rem",
@@ -63,16 +65,21 @@ const useStyles = createStyles((theme) => ({
   overText: {
     textTransform: "uppercase",
     fontFamily: `Montserrat, ${theme.fontFamily}`,
+    fontSize: "20px",
     fontWeight: 700,
     letterSpacing: "0.75px",
-    marginBottom: "1rem",
+    marginBottom: "1em",
     pointerEvents: "all",
     // color: theme.colors.dark[0],
+
+    [BREAKPOINT]: {
+      fontSize: "unset",
+    },
   },
 
   title: {
     fontFamily: theme.fontFamily,
-    fontSize: 64,
+    fontSize: theme.headings.sizes.h1.fontSize,
     fontWeight: 900,
     lineHeight: 1.1,
     margin: 0,
@@ -81,7 +88,7 @@ const useStyles = createStyles((theme) => ({
     // color: theme.colorScheme === "dark" ? theme.white : theme.black,
 
     [BREAKPOINT]: {
-      fontSize: 40,
+      fontSize: 48,
       lineHeight: 1.2,
     },
   },
