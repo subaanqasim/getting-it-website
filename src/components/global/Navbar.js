@@ -141,7 +141,7 @@ export default function Navbar() {
 
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
-      <Container className={classes.header} size="lg">
+      <Container className={classes.header} size="xl">
         <Link to="/">
           <img src={logo} alt="" style={{ width: "40px" }} />
         </Link>

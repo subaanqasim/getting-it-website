@@ -188,7 +188,7 @@ export default function Footer() {
   })
   return (
     <footer className={classes.footer}>
-      <Container className={classes.inner} size="lg">
+      <Container className={classes.inner} size="xl">
         <div className={classes.logo}>
           <Link to="/">
             <img

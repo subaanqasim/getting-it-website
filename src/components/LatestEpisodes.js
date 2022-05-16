@@ -26,7 +26,7 @@ export default function LatestEpisodes() {
   const { classes } = useStyles()
 
   return (
-    <Container size="lg" mt="8em">
+    <Container size="xl" mt="8em">
       <Divider
         my="xs"
         labelPosition="left"

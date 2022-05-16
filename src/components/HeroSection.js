@@ -170,7 +170,7 @@ export default function HeroSection() {
         overflow: "hidden",
       }}
     >
-      <Container size="lg" className={classes.wrapper}>
+      <Container size="xl" className={classes.wrapper}>
         {!isSSR && (
           <React.Suspense fallback={<div />}>
             <HeroImage className={classes.heroImg} />
