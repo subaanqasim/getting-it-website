@@ -11,7 +11,7 @@ import {
 import { useBooleanToggle } from "@mantine/hooks"
 import { Search } from "tabler-icons-react"
 import { Link } from "gatsby"
-import logo from "../assets/images/getting-it-logo.svg"
+import logo from "../../assets/images/getting-it-logo.svg"
 
 const HEADER_HEIGHT = 60
 

@@ -2,7 +2,7 @@ import React from "react"
 import { createStyles, Text, Container, ActionIcon, Group } from "@mantine/core"
 import { BrandTwitter, BrandYoutube, BrandInstagram } from "tabler-icons-react"
 import { Link } from "gatsby"
-import logo from "../assets/images/getting-it-logo.svg"
+import logo from "../../assets/images/getting-it-logo.svg"
 
 const useStyles = createStyles((theme) => ({
   footer: {
