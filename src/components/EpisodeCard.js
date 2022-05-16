@@ -58,7 +58,14 @@ export default function EpisodeCard() {
   const { classes } = useStyles()
 
   return (
-    <Card withBorder radius="md" p={0} mt="2em" className={classes.card}>
+    <Card
+      withBorder
+      radius="md"
+      p={0}
+      mt="2em"
+      className={classes.card}
+      shadow="md"
+    >
       <Group spacing={0} className={classes.group}>
         <StaticImage
           className={classes.img}
