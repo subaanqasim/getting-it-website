@@ -69,13 +69,41 @@ export default function Layout({ children }) {
     primaryColor: "giOrange",
     primaryShade: 5,
     defaultRadius: "sm",
+    loader: "bars",
     fontFamily:
       "Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
     headings: {
       fontFamily:
         "Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji",
+      sizes: {
+        h1: { fontSize: "5.6rem" },
+        h2: { fontSize: "4rem" },
+        h3: { fontSize: "2.8rem" },
+        h4: { fontSize: "2rem" },
+        h5: { fontSize: "1.4rem" },
+        h6: { fontSize: "1rem" },
+      },
     },
-    loader: "bars",
+    other: {
+      fontSizesLarge: [
+        "5.6rem",
+        "4rem",
+        "2.8rem",
+        "2rem",
+        "1.4rem",
+        "1rem",
+        "0.7rem",
+      ],
+      fontSizesSmall: [
+        "3rem",
+        "2.4rem",
+        "2rem",
+        "1.6rem",
+        "1.25rem",
+        "1rem",
+        "0.8rem",
+      ],
+    },
   }
 
   return (
