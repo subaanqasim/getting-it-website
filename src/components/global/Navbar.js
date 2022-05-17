@@ -16,12 +16,19 @@ import logo from "../../assets/images/getting-it-logo.svg"
 const HEADER_HEIGHT = 60
 
 const useStyles = createStyles((theme) => ({
+  navWrapper: {
+    position: "fixed",
+    top: "1em",
+    left: 0,
+    right: 0,
+    zIndex: 3,
+  },
+
   root: {
     position: "relative",
     zIndex: 2,
     border: "none",
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[9] : theme.white,
+    backgroundColor: "transparent",
   },
 
   dropdown: {
@@ -45,6 +52,14 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     height: "100%",
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.fn.rgba(theme.colors.dark[7], 0.75)
+        : theme.fn.rgba(theme.colors.gray[1], 0.75),
+    borderRadius: theme.radius.lg,
+    backdropFilter: "blur(12px)",
+    padding: "0 1em",
+    boxShadow: theme.shadows.lg,
   },
 
   links: {
@@ -140,31 +155,37 @@ export default function Navbar() {
   ))
 
   return (
-    <Header height={HEADER_HEIGHT} className={classes.root}>
-      <Container className={classes.header} size="xl">
-        <Link to="/">
-          <img src={logo} alt="" style={{ width: "40px" }} />
-        </Link>
-        <Group spacing="lg" className={classes.links}>
-          {items}
-        </Group>
-        <Search />
+    <div className={classes.navWrapper}>
+      <Header height={HEADER_HEIGHT} className={classes.root}>
+        <Container className={classes.header} size="sm">
+          <Link to="/">
+            <img src={logo} alt="" style={{ width: "40px" }} />
+          </Link>
+          <Group spacing="lg" className={classes.links}>
+            {items}
+          </Group>
+          <Search />
 
-        <Burger
-          opened={opened}
-          onClick={() => toggleOpened()}
-          className={classes.burger}
-          size="sm"
-        />
+          <Burger
+            opened={opened}
+            onClick={() => toggleOpened()}
+            className={classes.burger}
+            size="sm"
+          />
 
-        <Transition transition="pop-top-right" duration={200} mounted={opened}>
-          {(styles) => (
-            <Paper className={classes.dropdown} withBorder style={styles}>
-              {items}
-            </Paper>
-          )}
-        </Transition>
-      </Container>
-    </Header>
+          <Transition
+            transition="pop-top-right"
+            duration={200}
+            mounted={opened}
+          >
+            {(styles) => (
+              <Paper className={classes.dropdown} withBorder style={styles}>
+                {items}
+              </Paper>
+            )}
+          </Transition>
+        </Container>
+      </Header>
+    </div>
   )
 }
