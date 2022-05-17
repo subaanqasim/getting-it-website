@@ -19,6 +19,8 @@ import {
   BrandTwitter,
   Users,
 } from "tabler-icons-react"
+import { useStaticQuery, graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const useStyles = createStyles((theme) => ({
   title: {
@@ -48,65 +50,80 @@ const useStyles = createStyles((theme) => ({
   },
 }))
 
-const data = [
+const query = graphql`
   {
-    image:
-      "https://images.unsplash.com/photo-1477554193778-9562c28588c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
-    category: "Health & Fitness",
-    title: "Avid YouTube Watcher",
-    footer: "Follow →",
-    author: {
-      name: "Subaan Qasim",
-      location: "London, UK",
-      image: "",
-    },
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1477554193778-9562c28588c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
-    category: "Languages",
-    title: "Random Fact Dictionary",
-    footer: "Follow →",
-    author: {
-      name: "Daniel Redfearn",
-      location: "London, UK",
-      image: "",
-    },
-  },
-]
+    allContentfulAuthor(sort: { fields: name, order: DESC }) {
+      nodes {
+        id
+        name
+        funnyTitle
+        interests
+        location
+        instagram
+        twitter
+        linkedIn
+        portrait {
+          gatsbyImageData(
+            placeholder: BLURRED
+            formats: WEBP
+            cropFocus: TOP
+            aspectRatio: 0.8
+            resizingBehavior: FILL
+          )
+        }
+        shortDescription {
+          shortDescription
+        }
+      }
+    }
+  }
+`
 
 export default function LatestEpisodes() {
   const { classes, theme } = useStyles()
+  const {
+    allContentfulAuthor: { nodes: hostData },
+  } = useStaticQuery(query)
 
-  const profiles = data.map((person) => (
-    <Grid.Col sm={6} style={{ display: "flex", justifyContent: "center" }}>
-      <Card
-        key={person.author.name}
-        withBorder
-        p="lg"
-        radius="md"
-        className={classes.card}
-        shadow="md"
-      >
+  const hosts = hostData.map((person) => (
+    <Grid.Col
+      key={person.id}
+      sm={6}
+      style={{ display: "flex", justifyContent: "center" }}
+    >
+      <Card withBorder p="lg" radius="md" className={classes.card} shadow="md">
         <Card.Section mb="sm">
-          <img src={person.image} alt={person.title} />
+          <GatsbyImage
+            image={person.portrait.gatsbyImageData}
+            alt={person.name}
+          />
         </Card.Section>
 
-        <Badge>{person.category}</Badge>
+        <Group spacing="sm">
+          {person.interests.map((interest) => (
+            <Badge>{interest}</Badge>
+          ))}
+        </Group>
 
         <Text weight={700} className={classes.cardTitle} mt="xs">
-          {person.title}
+          {person.funnyTitle}
         </Text>
+
         <Text size="md" color="dimmed">
-          --- Brief summary/description ---
+          {person.shortDescription.shortDescription}
         </Text>
 
         <Group mt="lg">
-          <Avatar radius="sm" />
+          <Avatar
+            radius="sm"
+            color={person.name === "Subaan Qasim" ? "giBlue" : "giPink"}
+          >
+            {person.name === "Subaan Qasim" ? "🚀" : "🔥"}
+          </Avatar>
           <div>
-            <Text weight={500}>{person.author.name}</Text>
+            <Text weight={500}>{person.name}</Text>
             <Text size="xs" color="dimmed">
-              Location: {person.author.location}
+              Location: {person.location}
             </Text>
           </div>
         </Group>
@@ -114,16 +131,16 @@ export default function LatestEpisodes() {
         <Card.Section className={classes.footer}>
           <Group position="center">
             <Text size="xs" color="dimmed">
-              {person.footer}
+              Follow →
             </Text>
             <Group spacing={0}>
-              <ActionIcon>
+              <ActionIcon component="a" href={person.instagram}>
                 <BrandInstagram size={18} color={theme.colors.giOrange[6]} />
               </ActionIcon>
-              <ActionIcon>
+              <ActionIcon component="a" href={person.twitter}>
                 <BrandTwitter size={16} color={theme.colors.giBlue[6]} />
               </ActionIcon>
-              <ActionIcon>
+              <ActionIcon component="a" href={person.linkedIn}>
                 <BrandLinkedin size={18} color={theme.colors.giPink[6]} />
               </ActionIcon>
             </Group>
@@ -152,7 +169,7 @@ export default function LatestEpisodes() {
           The Hosts
         </Title>
         <Grid justify="center" mt="2em">
-          {profiles}
+          {hosts}
         </Grid>
       </Container>
     </section>
