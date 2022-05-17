@@ -39,7 +39,10 @@ const useStyles = createStyles((theme) => ({
       zIndex: 1,
 
       "@media (max-width: 960px)": {
-        background: "rgba(16, 17, 19, 0.85)",
+        background:
+          theme.colorScheme === "dark"
+            ? "rgba(16, 17, 19, 0.85)"
+            : "rgba(255, 255, 255, 0.85)",
       },
 
       [BREAKPOINT]: {
