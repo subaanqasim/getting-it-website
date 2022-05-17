@@ -134,25 +134,27 @@ export default function LatestEpisodes() {
   ))
 
   return (
-    <Container size="xl" mt="8em">
-      <Divider
-        my="xs"
-        labelPosition="left"
-        label={
-          <>
-            <Users size={12} />
-            <Box ml={5} style={{ fontSize: "1rem" }}>
-              A little bit about us
-            </Box>
-          </>
-        }
-      />
-      <Title order={2} className={classes.title}>
-        The Hosts
-      </Title>
-      <Grid justify="center" mt="2em">
-        {profiles}
-      </Grid>
-    </Container>
+    <section>
+      <Container size="xl" mt="8em">
+        <Divider
+          my="xs"
+          labelPosition="left"
+          label={
+            <>
+              <Users size={12} />
+              <Box ml={5} style={{ fontSize: "1rem" }}>
+                A little bit about us
+              </Box>
+            </>
+          }
+        />
+        <Title order={2} className={classes.title}>
+          The Hosts
+        </Title>
+        <Grid justify="center" mt="2em">
+          {profiles}
+        </Grid>
+      </Container>
+    </section>
   )
 }

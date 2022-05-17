@@ -16,22 +16,24 @@ export default function WhatIsGettingIt() {
   const { classes } = useStyles()
 
   return (
-    <Container size="xl" mt="8em">
-      <Divider
-        my="xs"
-        labelPosition="left"
-        label={
-          <>
-            <InfoCircle size={16} />
-            <Box ml={5} style={{ fontSize: "1rem" }}>
-              About the podcast
-            </Box>
-          </>
-        }
-      />
-      <Title order={2} className={classes.title}>
-        What is Getting It?
-      </Title>
-    </Container>
+    <section>
+      <Container size="xl" mt="8em">
+        <Divider
+          my="xs"
+          labelPosition="left"
+          label={
+            <>
+              <InfoCircle size={16} />
+              <Box ml={5} style={{ fontSize: "1rem" }}>
+                About the podcast
+              </Box>
+            </>
+          }
+        />
+        <Title order={2} className={classes.title}>
+          What is Getting It?
+        </Title>
+      </Container>
+    </section>
   )
 }

@@ -167,72 +167,74 @@ export default function HeroSection() {
   const isSSR = typeof window === "undefined"
 
   return (
-    <div
-      style={{
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <Container size="xl" className={classes.wrapper}>
-        {!isSSR && (
-          <React.Suspense fallback={<div />}>
-            <HeroImage className={classes.heroImg} />
-          </React.Suspense>
-        )}
+    <header>
+      <div
+        style={{
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <Container size="xl" className={classes.wrapper}>
+          {!isSSR && (
+            <React.Suspense fallback={<div />}>
+              <HeroImage className={classes.heroImg} />
+            </React.Suspense>
+          )}
 
-        <div className={classes.inner}>
-          <Text
-            className={classes.overText}
-            variant="gradient"
-            gradient={{ from: "gray", to: "dark", deg: 45 }}
-          >
-            Getting It
-          </Text>
-          <h1 className={classes.title}>
-            The{" "}
+          <div className={classes.inner}>
             <Text
-              component="span"
+              className={classes.overText}
               variant="gradient"
-              gradient={{ from: "giOrange", to: "orange" }}
-              inherit
+              gradient={{ from: "gray", to: "dark", deg: 45 }}
             >
-              podcast
-            </Text>{" "}
-            about learning everything
-          </h1>
-
-          <Text className={classes.description} color="dimmed">
-            We explore topics both familiar and unfamiliar to us to find out
-            what makes them interesting, so that we can expand our horizons and
-            further our understanding of the world and people around us.
-          </Text>
-
-          <Group className={classes.controls}>
-            <Link to="/episodes" className={classes.link}>
-              <Button
-                // style={{width:}}
-                className={classes.control}
-                size="xl"
+              Getting It
+            </Text>
+            <h1 className={classes.title}>
+              The{" "}
+              <Text
+                component="span"
                 variant="gradient"
-                gradient={{ from: "blue", to: "cyan" }}
+                gradient={{ from: "giOrange", to: "orange" }}
+                inherit
               >
-                Listen now
-              </Button>
-            </Link>
+                podcast
+              </Text>{" "}
+              about learning everything
+            </h1>
 
-            <Button
-              component="a"
-              href="#"
-              size="xl"
-              variant="outline"
-              className={cx(classes.control, classes.githubControl)}
-            >
-              Subscribe
-            </Button>
-          </Group>
-        </div>
-        <ArrowDown size={48} className={classes.arrow} />
-      </Container>
-    </div>
+            <Text className={classes.description} color="dimmed">
+              We explore topics both familiar and unfamiliar to us to find out
+              what makes them interesting, so that we can expand our horizons
+              and further our understanding of the world and people around us.
+            </Text>
+
+            <Group className={classes.controls}>
+              <Link to="/episodes" className={classes.link}>
+                <Button
+                  // style={{width:}}
+                  className={classes.control}
+                  size="xl"
+                  variant="gradient"
+                  gradient={{ from: "blue", to: "cyan" }}
+                >
+                  Listen now
+                </Button>
+              </Link>
+
+              <Button
+                component="a"
+                href="#"
+                size="xl"
+                variant="outline"
+                className={cx(classes.control, classes.githubControl)}
+              >
+                Subscribe
+              </Button>
+            </Group>
+          </div>
+          <ArrowDown size={48} className={classes.arrow} />
+        </Container>
+      </div>
+    </header>
   )
 }
