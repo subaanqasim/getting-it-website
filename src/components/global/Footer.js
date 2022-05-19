@@ -1,8 +1,8 @@
 import React from "react"
 import { createStyles, Text, Container, ActionIcon, Group } from "@mantine/core"
 import { BrandTwitter, BrandYoutube, BrandInstagram } from "tabler-icons-react"
-import { Link } from "gatsby"
-import logo from "../../assets/images/getting-it-logo.svg"
+import { Link, graphql, useStaticQuery } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -50,6 +50,7 @@ const useStyles = createStyles((theme) => ({
   groups: {
     display: "flex",
     flexWrap: "wrap",
+    gap: "2em",
 
     [theme.fn.smallerThan("sm")]: {
       display: "none",
@@ -57,7 +58,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   wrapper: {
-    width: 160,
+    maxWidth: 400,
   },
 
   link: {
@@ -86,6 +87,10 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.gray[9],
   },
 
+  episodeLinks: {
+    marginBottom: "0.5em",
+  },
+
   afterFooter: {
     display: "flex",
     justifyContent: "space-between",
@@ -111,40 +116,23 @@ const useStyles = createStyles((theme) => ({
 
 const footerData = [
   {
-    title: "Latest Episodes",
-    links: [
-      {
-        label: "Latest 1",
-        link: "#",
-      },
-      {
-        label: "Latest 2",
-        link: "#",
-      },
-      {
-        label: "Latest 3",
-        link: "#",
-      },
-    ],
-  },
-  {
     title: "Explore",
     links: [
       {
-        label: "Podcast episodes",
-        link: "#",
+        label: "All episodes",
+        link: "/episodes",
       },
       {
         label: "Articles",
-        link: "#",
+        link: "/articles",
       },
       {
         label: "About",
-        link: "#",
+        link: "/about",
       },
       {
         label: "Contact",
-        link: "#",
+        link: "/connect",
       },
     ],
   },
@@ -153,27 +141,59 @@ const footerData = [
     links: [
       {
         label: "Privacy Policy",
-        link: "#",
+        link: "/privacy-policy",
       },
       {
         label: "Cookie Policy",
-        link: "#",
+        link: "/cookie-policy",
       },
     ],
   },
 ]
 
+const query = graphql`
+  {
+    allContentfulPodcasts(
+      sort: { fields: datePublished, order: DESC }
+      limit: 3
+    ) {
+      nodes {
+        id
+        episodeTitle
+        episodeNumber
+        datePublished(formatString: "MMM DD, YYYY")
+        slug
+      }
+    }
+  }
+`
+
 export default function Footer() {
   const { classes } = useStyles()
+  const {
+    allContentfulPodcasts: { nodes: episodeData },
+  } = useStaticQuery(query)
+
+  const latestEpisodesLinks = episodeData.map((ep) => (
+    <div className={classes.episodeLinks}>
+      <Text key={ep.id} className={classes.link} component={Link} to={ep.slug}>
+        {ep.episodeTitle}
+      </Text>
+      <Text
+        mb
+        size="xs"
+        color="dimmed"
+      >{`${ep.datePublished} — ep. ${ep.episodeNumber}`}</Text>
+    </div>
+  ))
 
   const groups = footerData.map((group) => {
     const links = group.links.map((link, index) => (
       <Text
         key={index}
         className={classes.link}
-        component="a"
-        href={link.link}
-        onClick={(event) => event.preventDefault()}
+        component={Link}
+        to={link.link}
       >
         {link.label}
       </Text>
@@ -186,15 +206,21 @@ export default function Footer() {
       </div>
     )
   })
+
   return (
     <footer className={classes.footer}>
       <Container className={classes.inner} size="xl">
         <div className={classes.logo}>
           <Link to="/">
-            <img
-              src={logo}
+            <StaticImage
+              layout="fixed"
+              loading="eager"
+              placeholder="tracedSVG"
+              src="../../assets/images/getting-it-logo.svg"
               alt=""
-              style={{ maxWidth: "48px", marginBottom: "8px" }}
+              width={48}
+              aspectRatio={1 / 1}
+              style={{ marginBottom: "8px" }}
             />
           </Link>
           <Text size="xs" color="dimmed" className={classes.description}>
@@ -202,9 +228,16 @@ export default function Footer() {
             bit more.
           </Text>
         </div>
-        <div className={classes.groups}>{groups}</div>
+        <div className={classes.groups}>
+          <div className={classes.wrapper}>
+            <Text className={classes.title}>Latest Episodes</Text>
+            {latestEpisodesLinks}
+          </div>
+          {groups}
+        </div>
       </Container>
-      <Container className={classes.afterFooter} size="lg">
+
+      <Container className={classes.afterFooter} size="xl">
         <Text color="dimmed" size="sm">
           © 2022 Getting It. All rights reserved.
         </Text>
