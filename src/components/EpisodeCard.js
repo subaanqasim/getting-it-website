@@ -82,8 +82,10 @@ export default function EpisodeCard({
         </Link>
         <div className={classes.body}>
           <Group spacing="0.75em" mb="xs">
-            {tags.map((tag) => (
-              <Badge radius="sm">{tag}</Badge>
+            {tags.map((tag, i) => (
+              <Badge key={i} radius="sm">
+                {tag}
+              </Badge>
             ))}
           </Group>
           <Title
