@@ -40,7 +40,11 @@ export default function EpisodeList() {
   } = useStaticQuery(query)
 
   const tagsList = getTagsList(episodeData)
-  const tagFilters = tagsList.map((tag) => <Chip value={tag}>{tag}</Chip>)
+  const tagFilters = tagsList.map((tag, i) => (
+    <Chip key={i} value={tag}>
+      {tag}
+    </Chip>
+  ))
 
   const filteredEpisodeData =
     filter === "All"
