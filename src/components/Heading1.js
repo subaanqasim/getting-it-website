@@ -25,12 +25,14 @@ export default function Heading1({
         my="xs"
         labelPosition={subtitlePosition}
         label={
-          <>
-            {subtitleIcon}
-            <Box ml={5} style={{ fontSize: "1rem" }}>
-              {subtitle}
-            </Box>
-          </>
+          subtitle && (
+            <>
+              {subtitleIcon}
+              <Box ml={5} style={{ fontSize: "1rem" }}>
+                {subtitle}
+              </Box>
+            </>
+          )
         }
       />
       <Title order={1} className={classes.title}>
