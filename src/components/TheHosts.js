@@ -158,7 +158,7 @@ export default function LatestEpisodes() {
           labelPosition="left"
           label={
             <>
-              <Users size={12} />
+              <Users size={16} />
               <Box ml={5} style={{ fontSize: "1rem" }}>
                 A little bit about us
               </Box>

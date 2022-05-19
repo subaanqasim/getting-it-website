@@ -79,7 +79,7 @@ export default function LatestEpisodes() {
           labelPosition="left"
           label={
             <>
-              <Microphone size={12} />
+              <Microphone size={16} />
               <Box ml={5} style={{ fontSize: "1rem" }}>
                 Listen to our most recent ramblings
               </Box>

@@ -10,7 +10,7 @@ export default function episodes() {
       <PageHeader
         title="Episodes"
         subtitle="All of our episodes in one place"
-        subtitleIcon={<Microphone size={12} />}
+        subtitleIcon={<Microphone size={16} />}
       />
       <EpisodeList />
     </Layout>
