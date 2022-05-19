@@ -8,7 +8,7 @@ import Heading2 from "./Heading2"
 const query = graphql`
   {
     allContentfulPodcasts(
-      sort: { fields: datePublished, order: ASC }
+      sort: { fields: datePublished, order: DESC }
       limit: 3
     ) {
       nodes {
