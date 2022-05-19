@@ -61,6 +61,10 @@ const useStyles = createStyles((theme) => ({
     backdropFilter: "blur(12px)",
     padding: "0 1em",
     boxShadow: theme.shadows.lg,
+
+    [theme.fn.smallerThan("sm")]: {
+      margin: "0 0.5em",
+    },
   },
 
   links: {
