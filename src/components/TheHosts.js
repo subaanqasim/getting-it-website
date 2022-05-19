@@ -1,9 +1,6 @@
 import React from "react"
 import {
-  Title,
   Container,
-  Divider,
-  Box,
   createStyles,
   Card,
   Badge,
@@ -21,16 +18,9 @@ import {
 } from "tabler-icons-react"
 import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import Heading2 from "./Heading2"
 
 const useStyles = createStyles((theme) => ({
-  title: {
-    fontSize: theme.other.fontSizesLarge[1],
-
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      fontSize: theme.other.fontSizesSmall[1],
-    },
-  },
-
   card: {
     backgroundColor:
       theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
@@ -100,8 +90,8 @@ export default function LatestEpisodes() {
         </Card.Section>
 
         <Group spacing="sm">
-          {person.interests.map((interest) => (
-            <Badge>{interest}</Badge>
+          {person.interests.map((interest, i) => (
+            <Badge key={i}>{interest}</Badge>
           ))}
         </Group>
 
@@ -153,21 +143,11 @@ export default function LatestEpisodes() {
   return (
     <section>
       <Container size="xl" mt="8em">
-        <Divider
-          my="xs"
-          labelPosition="left"
-          label={
-            <>
-              <Users size={16} />
-              <Box ml={5} style={{ fontSize: "1rem" }}>
-                A little bit about us
-              </Box>
-            </>
-          }
+        <Heading2
+          title="The Hosts"
+          subtitle="A little bit about us"
+          subtitleIcon={<Users size={16} />}
         />
-        <Title order={2} className={classes.title}>
-          The Hosts
-        </Title>
         <Grid justify="center" mt="2em">
           {hosts}
         </Grid>

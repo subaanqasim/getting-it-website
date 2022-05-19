@@ -1,26 +1,9 @@
 import React from "react"
-import {
-  Title,
-  Container,
-  Button,
-  Group,
-  Divider,
-  Box,
-  createStyles,
-} from "@mantine/core"
+import { Container, Button, Group } from "@mantine/core"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import EpisodeCard from "./EpisodeCard"
 import { Microphone } from "tabler-icons-react"
-
-const useStyles = createStyles((theme) => ({
-  title: {
-    fontSize: theme.other.fontSizesLarge[1],
-
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      fontSize: theme.other.fontSizesSmall[1],
-    },
-  },
-}))
+import Heading2 from "./Heading2"
 
 const query = graphql`
   {
@@ -51,7 +34,6 @@ const query = graphql`
 `
 
 export default function LatestEpisodes() {
-  const { classes } = useStyles()
   const {
     allContentfulPodcasts: { nodes: episodeData },
   } = useStaticQuery(query)
@@ -74,21 +56,11 @@ export default function LatestEpisodes() {
   return (
     <section>
       <Container size="xl" mt="8em">
-        <Divider
-          my="xs"
-          labelPosition="left"
-          label={
-            <>
-              <Microphone size={16} />
-              <Box ml={5} style={{ fontSize: "1rem" }}>
-                Listen to our most recent ramblings
-              </Box>
-            </>
-          }
+        <Heading2
+          title="Latest Episodes"
+          subtitle="Listen to our most recent ramblings"
+          subtitleIcon={<Microphone size={16} />}
         />
-        <Title order={2} className={classes.title}>
-          Latest Episodes
-        </Title>
 
         {episodes}
 
