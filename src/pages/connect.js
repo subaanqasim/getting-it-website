@@ -1,13 +1,16 @@
 import React from "react"
-import { Container } from "@mantine/core"
+import { Social } from "tabler-icons-react"
 import Layout from "../components/global/Layout"
+import PageHeader from "../components/PageHeader"
 
 export default function connect() {
   return (
     <Layout>
-      <Container size="lg">
-        <div>connect</div>
-      </Container>
+      <PageHeader
+        title="Connect With Us"
+        subtitle="Get in touch"
+        subtitleIcon={<Social size={16} />}
+      />
     </Layout>
   )
 }
