@@ -12,6 +12,7 @@ import { useBooleanToggle } from "@mantine/hooks"
 import { Search } from "tabler-icons-react"
 import { Link } from "gatsby"
 import logo from "../../assets/images/getting-it-logo.svg"
+import { StaticImage } from "gatsby-plugin-image"
 
 const HEADER_HEIGHT = 60
 
@@ -111,6 +112,13 @@ const useStyles = createStyles((theme) => ({
         theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 3 : 7],
     },
   },
+
+  searchIcon: {
+    [theme.fn.smallerThan("sm")]: {
+      marginLeft: "auto",
+      marginRight: "16px",
+    },
+  },
 }))
 
 const links = [
@@ -159,12 +167,20 @@ export default function Navbar() {
       <Header height={HEADER_HEIGHT} className={classes.root}>
         <Container className={classes.header} size="sm">
           <Link to="/">
-            <img src={logo} alt="" style={{ width: "40px" }} />
+            <StaticImage
+              layout="fixed"
+              loading="eager"
+              placeholder="tracedSVG"
+              src="../../assets/images/getting-it-logo.svg"
+              alt=""
+              width={40}
+              aspectRatio={1 / 1}
+            />
           </Link>
           <Group spacing="lg" className={classes.links}>
             {items}
           </Group>
-          <Search />
+          <Search className={classes.searchIcon} />
 
           <Burger
             opened={opened}
