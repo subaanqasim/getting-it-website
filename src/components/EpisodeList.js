@@ -8,16 +8,15 @@ import { useOs } from "@mantine/hooks"
 
 const query = graphql`
   {
-    allContentfulPodcasts(sort: { fields: datePublished, order: ASC }) {
+    allContentfulPodcasts(sort: { fields: datePublished, order: DESC }) {
       nodes {
-        id
         episodeTitle
         episodeNumber
+        id
         datePublished(formatString: "MMM DD, YYYY")
-        tags
-        audioEmbedLink
         duration
         excerpt
+        audioEmbedLink
         slug
         thumbnail {
           gatsbyImageData(
@@ -25,6 +24,11 @@ const query = graphql`
             resizingBehavior: CROP
             layout: CONSTRAINED
           )
+        }
+        metadata {
+          tags {
+            name
+          }
         }
       }
     }
@@ -49,12 +53,14 @@ export default function EpisodeList() {
   const filteredEpisodeData =
     filter === "All"
       ? episodeData
-      : episodeData.filter((ep) => ep.tags.includes(filter))
+      : episodeData.filter((ep) =>
+          ep.metadata.tags.some((tag) => tag.name === filter)
+        )
 
   const filteredEpisodes = filteredEpisodeData.map((ep) => (
     <EpisodeCard
       key={ep.id}
-      tags={ep.tags}
+      tags={ep.metadata.tags}
       title={ep.episodeTitle}
       excerpt={ep.excerpt}
       duration={ep.duration}

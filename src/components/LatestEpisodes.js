@@ -12,14 +12,13 @@ const query = graphql`
       limit: 3
     ) {
       nodes {
-        id
         episodeTitle
         episodeNumber
+        id
         datePublished(formatString: "MMM DD, YYYY")
-        tags
-        audioEmbedLink
         duration
         excerpt
+        audioEmbedLink
         slug
         thumbnail {
           gatsbyImageData(
@@ -27,6 +26,11 @@ const query = graphql`
             resizingBehavior: CROP
             layout: CONSTRAINED
           )
+        }
+        metadata {
+          tags {
+            name
+          }
         }
       }
     }
@@ -41,7 +45,7 @@ export default function LatestEpisodes() {
   const episodes = episodeData.map((ep) => (
     <EpisodeCard
       key={ep.id}
-      tags={ep.tags}
+      tags={ep.metadata.tags}
       title={ep.episodeTitle}
       excerpt={ep.excerpt}
       duration={ep.duration}

@@ -84,7 +84,7 @@ export default function EpisodeCard({
           <Group spacing="0.75em" mb="xs">
             {tags.map((tag, i) => (
               <Badge key={i} radius="sm">
-                {tag}
+                {tag.name}
               </Badge>
             ))}
           </Group>
@@ -133,7 +133,7 @@ export default function EpisodeCard({
 
           <iframe
             style={{ borderRadius: "12px" }}
-            src={embedURL}
+            src={`${embedURL}?utm_source=generator&theme=0`}
             width="100%"
             height="152"
             frameBorder="0"

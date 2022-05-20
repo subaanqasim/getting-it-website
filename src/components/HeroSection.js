@@ -1,12 +1,5 @@
 import React from "react"
-import {
-  createStyles,
-  Container,
-  Text,
-  Button,
-  Group,
-  useMantineTheme,
-} from "@mantine/core"
+import { createStyles, Container, Text, Button, Group } from "@mantine/core"
 import { Link } from "gatsby"
 import { ArrowDown } from "tabler-icons-react"
 
@@ -163,7 +156,6 @@ const useStyles = createStyles((theme) => ({
 
 export default function HeroSection() {
   const { classes, cx } = useStyles()
-  const theme = useMantineTheme()
   const isSSR = typeof window === "undefined"
 
   return (
@@ -211,7 +203,6 @@ export default function HeroSection() {
             <Group className={classes.controls}>
               <Link to="/episodes" className={classes.link}>
                 <Button
-                  // style={{width:}}
                   className={classes.control}
                   size="xl"
                   variant="gradient"

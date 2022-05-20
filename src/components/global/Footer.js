@@ -175,8 +175,8 @@ export default function Footer() {
   } = useStaticQuery(query)
 
   const latestEpisodesLinks = episodeData.map((ep) => (
-    <div className={classes.episodeLinks}>
-      <Text key={ep.id} className={classes.link} component={Link} to={ep.slug}>
+    <div key={ep.id} className={classes.episodeLinks}>
+      <Text className={classes.link} component={Link} to={ep.slug}>
         {ep.episodeTitle}
       </Text>
       <Text
