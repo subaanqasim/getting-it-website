@@ -132,13 +132,14 @@ export default function EpisodeCard({
           </Text>
 
           <iframe
+            title={title}
             style={{ borderRadius: "12px" }}
             src={`${embedURL}?utm_source=generator&theme=0`}
             width="100%"
-            height="152"
+            height="152px"
             frameBorder="0"
             allowFullScreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            allow="encrypted-media *; fullscreen; picture-in-picture"
           ></iframe>
         </div>
       </Group>
