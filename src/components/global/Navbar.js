@@ -12,7 +12,6 @@ import { useBooleanToggle } from "@mantine/hooks"
 import { Search } from "tabler-icons-react"
 import { Link } from "gatsby"
 import logo from "../../assets/images/getting-it-logo.svg"
-import { StaticImage } from "gatsby-plugin-image"
 
 const HEADER_HEIGHT = 60
 
@@ -171,15 +170,7 @@ export default function Navbar() {
       <Header height={HEADER_HEIGHT} className={classes.root}>
         <Container className={classes.header} size="sm">
           <Link to="/">
-            <StaticImage
-              layout="fixed"
-              loading="eager"
-              placeholder="tracedSVG"
-              src="../../assets/images/getting-it-logo.svg"
-              alt=""
-              width={40}
-              aspectRatio={1 / 1}
-            />
+            <img src={logo} alt="" width="40px" />
           </Link>
           <Group spacing="lg" className={classes.links}>
             {items}

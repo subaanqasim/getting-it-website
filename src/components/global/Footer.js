@@ -2,7 +2,7 @@ import React from "react"
 import { createStyles, Text, Container, ActionIcon, Group } from "@mantine/core"
 import { BrandTwitter, BrandYoutube, BrandInstagram } from "tabler-icons-react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import logo from "../../assets/images/getting-it-logo.svg"
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -212,14 +212,10 @@ export default function Footer() {
       <Container className={classes.inner} size="xl">
         <div className={classes.logo}>
           <Link to="/">
-            <StaticImage
-              layout="fixed"
-              loading="eager"
-              placeholder="tracedSVG"
-              src="../../assets/images/getting-it-logo.svg"
+            <img
+              src={logo}
               alt=""
-              width={48}
-              aspectRatio={1 / 1}
+              width="48px"
               style={{ marginBottom: "8px" }}
             />
           </Link>
