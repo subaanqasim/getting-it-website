@@ -10,6 +10,18 @@ require("dotenv").config({
 
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    title: `Getting It`,
+    siteUrl: `https://www.gettingit.co.uk`,
+    description: `The podcast about learning everything.`,
+    social: {
+      twitter: "https://twitter.com/gettingit_pod",
+      instagram: "https://instagram.com/gettingit_pod",
+      twitterUsername: "@gettingit_pod",
+      email: "thoughts@gettingit.co.uk",
+    },
+  },
+
   plugins: [
     `gatsby-plugin-mantine`,
     {
