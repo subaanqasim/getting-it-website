@@ -131,7 +131,7 @@ export default function EpisodeCard({
             {excerpt}
           </Text>
 
-          <iframe
+          {/* <iframe
             title={title}
             style={{ borderRadius: "12px" }}
             src={`${embedURL}?utm_source=generator&theme=0`}
@@ -140,7 +140,7 @@ export default function EpisodeCard({
             frameBorder="0"
             allowFullScreen=""
             allow="encrypted-media *; fullscreen; picture-in-picture"
-          ></iframe>
+          ></iframe> */}
         </div>
       </Group>
     </Card>

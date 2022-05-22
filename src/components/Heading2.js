@@ -9,6 +9,13 @@ const useStyles = createStyles((theme) => ({
       fontSize: theme.other.fontSizesSmall[1],
     },
   },
+  titleSmall: {
+    fontSize: theme.other.fontSizesLarge[2],
+
+    [theme.fn.smallerThan("sm")]: {
+      fontSize: theme.other.fontSizesSmall[2],
+    },
+  },
 }))
 
 export default function Heading2({
@@ -16,26 +23,27 @@ export default function Heading2({
   subtitle,
   subtitleIcon,
   subtitlePosition = "left",
+  small = false,
 }) {
   const { classes } = useStyles()
 
   return (
     <>
-      <Divider
-        my="xs"
-        labelPosition={subtitlePosition}
-        label={
-          subtitle && (
+      {subtitle && (
+        <Divider
+          my="xs"
+          labelPosition={subtitlePosition}
+          label={
             <>
               {subtitleIcon}
               <Box ml={5} style={{ fontSize: "1rem" }}>
                 {subtitle}
               </Box>
             </>
-          )
-        }
-      />
-      <Title order={2} className={classes.title}>
+          }
+        />
+      )}
+      <Title order={2} className={small ? classes.titleSmall : classes.title}>
         {title}
       </Title>
     </>
