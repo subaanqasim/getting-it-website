@@ -97,7 +97,7 @@ export default function EpisodeCard({
             {title}
           </Title>
 
-          <Group noWrap spacing="sm" mt="xs" my="md">
+          <Group spacing="sm" mt="xs" my="md">
             <Group spacing="0.25em" noWrap>
               <Clock className={classes.icon} size={16} />
               <Text size="xs" color="dimmed">

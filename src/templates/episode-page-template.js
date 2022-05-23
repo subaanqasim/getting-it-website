@@ -10,7 +10,7 @@ export default function EpisodePageTemplate({ data }) {
   const { current, next, previous } = data
   return (
     <Layout>
-      <EpisodePageHeader title={current.episodeTitle} />
+      <EpisodePageHeader epData={current} />
       <Container size="sm">
         {/* ADD 'LISTEN EVERYWHERE' COMPONENT WITH BUTTONS TO ALL PLAYERS */}
         <MdxProvider>
@@ -27,7 +27,7 @@ export const query = graphql`
       episodeTitle
       episodeNumber
       duration
-      datePublished
+      datePublished(formatString: "MMM DD, YYYY")
       audioEmbedLink
       metadata {
         tags {
