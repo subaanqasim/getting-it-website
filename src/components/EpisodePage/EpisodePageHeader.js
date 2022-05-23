@@ -15,7 +15,9 @@ const useStyles = createStyles((theme) => ({
     paddingBottom: "3em",
     position: "relative",
     background:
-      "linear-gradient(0deg, rgba(16,17,19,1) 0%, rgba(16,17,19,0) 50%, rgba(16,17,19,0) 60%, rgba(16,17,16,1) 100%)",
+      theme.colorScheme === "dark"
+        ? "linear-gradient(0deg, rgba(16,17,19,1) 0%, rgba(16,17,19,0) 50%, rgba(16,17,19,0) 60%, rgba(16,17,16,1) 100%)"
+        : "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 60%, rgba(255,255,255,1) 100%)",
 
     [theme.fn.smallerThan("sm")]: {
       paddingTop: "6em",
@@ -29,7 +31,7 @@ const useStyles = createStyles((theme) => ({
     height: "100%",
     width: "100%",
     zIndex: -1,
-    opacity: 0.2,
+    opacity: 0.3,
   },
 }))
 
