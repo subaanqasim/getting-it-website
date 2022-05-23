@@ -29,6 +29,13 @@ export const query = graphql`
       duration
       datePublished(formatString: "MMM DD, YYYY")
       audioEmbedLink
+      thumbnail {
+        gatsbyImageData(
+          layout: FULL_WIDTH
+          placeholder: DOMINANT_COLOR
+          formats: [AUTO, WEBP]
+        )
+      }
       metadata {
         tags {
           name

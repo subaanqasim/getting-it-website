@@ -2,12 +2,36 @@ import React from "react"
 import { Container, Text, Group, Badge, createStyles } from "@mantine/core"
 import Heading1 from "../Heading1"
 import { CalendarEvent, Clock, List } from "tabler-icons-react"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-const useStyles = createStyles({
+const useStyles = createStyles((theme) => ({
   icon: {
     strokeWidth: "1.5px",
   },
-})
+
+  header: {
+    // minHeight: "calc(70vh - 8em)",
+    paddingTop: "8em",
+    paddingBottom: "3em",
+    position: "relative",
+    background:
+      "linear-gradient(0deg, rgba(16,17,19,1) 0%, rgba(16,17,19,0) 50%, rgba(16,17,19,0) 60%, rgba(16,17,16,1) 100%)",
+
+    [theme.fn.smallerThan("sm")]: {
+      paddingTop: "6em",
+    },
+  },
+
+  backgroundImage: {
+    position: "absolute !important",
+    top: 0,
+    left: 0,
+    height: "100%",
+    width: "100%",
+    zIndex: -1,
+    opacity: 0.2,
+  },
+}))
 
 export default function EpisodePageHeader({ epData }) {
   const { classes } = useStyles()
@@ -18,18 +42,12 @@ export default function EpisodePageHeader({ epData }) {
     duration,
     episodeNumber,
     datePublished,
+    thumbnail,
   } = epData
 
   return (
-    <header>
-      <Container
-        size="xl"
-        mt="8em"
-        style={{
-          // textAlign: "center",
-          minHeight: "calc(70vh - 8em)",
-        }}
-      >
+    <header className={classes.header}>
+      <Container size="xl">
         <div style={{ marginBottom: "0.5em" }}>
           <Heading1 title={episodeTitle} small={true} />
         </div>
@@ -44,30 +62,20 @@ export default function EpisodePageHeader({ epData }) {
         <Group spacing="sm" mt="xs" my="md">
           <Group spacing="0.25em" noWrap>
             <Clock className={classes.icon} size={16} />
-            <Text size="md" color="dimmed">
-              {`${duration} mins`}
-            </Text>
+            <Text size="md">{`${duration} mins`}</Text>
           </Group>
 
-          <Text size="md" color="dimmed">
-            /
-          </Text>
+          <Text size="md">/</Text>
 
           <Group spacing="0.25em" noWrap>
             <CalendarEvent className={classes.icon} size={16} />
-            <Text size="md" color="dimmed">
-              {datePublished}
-            </Text>
+            <Text size="md">{datePublished}</Text>
           </Group>
 
-          <Text size="xs" color="dimmed">
-            /
-          </Text>
+          <Text size="xs">/</Text>
           <Group spacing="0.25em" noWrap>
             <List className={classes.icon} size={16} />
-            <Text size="md" color="dimmed">
-              {`ep. ${episodeNumber}`}
-            </Text>
+            <Text size="md">{`ep. ${episodeNumber}`}</Text>
           </Group>
         </Group>
 
@@ -83,6 +91,12 @@ export default function EpisodePageHeader({ epData }) {
             allow="encrypted-media *; fullscreen; picture-in-picture"
           ></iframe>
         </div>
+
+        <GatsbyImage
+          image={thumbnail.gatsbyImageData}
+          alt=""
+          className={classes.backgroundImage}
+        />
       </Container>
     </header>
   )
