@@ -1,18 +1,49 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
-import { Container } from "@mantine/core"
+import { Button, Container, Modal } from "@mantine/core"
 import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
 import Layout from "../components/global/Layout"
 import EpisodePageHeader from "../components/EpisodePage/EpisodePageHeader"
 import MdxProvider from "../components/EpisodePage/Mdx/MdxProvider"
+import PodcastLinksGrid from "../components/PodcastLinksGrid"
+import { useMediaQuery } from "@mantine/hooks"
 
 export default function EpisodePageTemplate({ data }) {
   const { current, next, previous } = data
+  const smallScreen = useMediaQuery("(max-width: 576px)")
+  const [modalOpen, setModalOpen] = useState(false)
+
   return (
     <Layout>
       <EpisodePageHeader epData={current} />
       <Container size="sm">
-        {/* ADD 'LISTEN EVERYWHERE' COMPONENT WITH BUTTONS TO ALL PLAYERS */}
+        <Modal
+          centered
+          padding="md"
+          opened={modalOpen}
+          overflow="inside"
+          onClose={() => setModalOpen(false)}
+          title="Choose wisely..."
+        >
+          <PodcastLinksGrid />
+        </Modal>
+
+        {!smallScreen && <PodcastLinksGrid />}
+
+        {smallScreen && (
+          <Button
+            fullWidth
+            size="md"
+            mb="xl"
+            onClick={() => setModalOpen(true)}
+            variant="gradient"
+            gradient={{ from: "blue", to: "giBlue", deg: 60 }}
+            color="giBlue"
+          >
+            Choose podcast platform
+          </Button>
+        )}
+
         <MdxProvider>
           <MDXRenderer>{current.notes.childMdx.body}</MDXRenderer>
         </MdxProvider>
