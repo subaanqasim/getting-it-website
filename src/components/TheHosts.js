@@ -91,7 +91,9 @@ export default function LatestEpisodes() {
 
         <Group spacing="sm">
           {person.interests.map((interest, i) => (
-            <Badge key={i}>{interest}</Badge>
+            <Badge radius="sm" key={i}>
+              {interest}
+            </Badge>
           ))}
         </Group>
 
