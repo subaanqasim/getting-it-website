@@ -1,10 +1,18 @@
-import React, { useState } from "react"
-import { Chip, Chips, Container, Kbd, TextInput } from "@mantine/core"
+import React, { useEffect, useState, useRef } from "react"
+import {
+  Chip,
+  Chips,
+  Container,
+  Kbd,
+  Pagination,
+  TextInput,
+} from "@mantine/core"
 import { useStaticQuery, graphql } from "gatsby"
 import EpisodeCard from "./EpisodeCard"
 import getTagsList from "../utils/getTagsList"
 import { Search } from "tabler-icons-react"
 import { useOs } from "@mantine/hooks"
+import getPages from "../utils/getPages"
 
 const query = graphql`
   {
@@ -38,39 +46,57 @@ const query = graphql`
 export default function EpisodeList() {
   const os = useOs()
   const [filter, setFilter] = useState("All")
+  const [page, setPage] = useState(1)
+  const [pagedEpisodeData, setPagedEpisodeData] = useState([])
+  const [displayedEpisodes, setDisplayedEpisodes] = useState([])
+  const isMounted = useRef(false)
+  const ITEMS_PER_PAGE = 4
 
   const {
-    allContentfulPodcasts: { nodes: episodeData },
+    allContentfulPodcasts: { nodes: allEpisodeData },
   } = useStaticQuery(query)
 
-  const tagsList = getTagsList(episodeData)
+  const tagsList = getTagsList(allEpisodeData)
   const tagFilters = tagsList.map((tag, i) => (
     <Chip key={i} value={tag}>
       {tag}
     </Chip>
   ))
 
-  const filteredEpisodeData =
-    filter === "All"
-      ? episodeData
-      : episodeData.filter((ep) =>
-          ep.metadata.tags.some((tag) => tag.name === filter)
-        )
+  useEffect(() => {
+    if (filter === "All") {
+      setPagedEpisodeData(getPages(allEpisodeData, ITEMS_PER_PAGE))
+      setPage(1)
+    } else {
+      const filtered = allEpisodeData.filter((ep) =>
+        ep.metadata.tags.some((tag) => tag.name === filter)
+      )
+      setPagedEpisodeData(getPages(filtered, ITEMS_PER_PAGE))
+      setPage(1)
+    }
+  }, [filter, allEpisodeData])
 
-  const filteredEpisodes = filteredEpisodeData.map((ep) => (
-    <EpisodeCard
-      key={ep.id}
-      tags={ep.metadata.tags}
-      title={ep.episodeTitle}
-      excerpt={ep.excerpt}
-      duration={ep.duration}
-      pubDate={ep.datePublished}
-      epNum={ep.episodeNumber}
-      embedURL={ep.audioEmbedLink}
-      img={ep.thumbnail.gatsbyImageData}
-      slug={ep.slug}
-    />
-  ))
+  useEffect(() => {
+    if (isMounted.current) {
+      const items = pagedEpisodeData[page - 1].map((ep) => (
+        <EpisodeCard
+          key={ep.id}
+          tags={ep.metadata.tags}
+          title={ep.episodeTitle}
+          excerpt={ep.excerpt}
+          duration={ep.duration}
+          pubDate={ep.datePublished}
+          epNum={ep.episodeNumber}
+          embedURL={ep.audioEmbedLink}
+          img={ep.thumbnail.gatsbyImageData}
+          slug={ep.slug}
+        />
+      ))
+      setDisplayedEpisodes(items)
+    } else {
+      isMounted.current = true
+    }
+  }, [page, pagedEpisodeData])
 
   const rightSection = (
     <div
@@ -110,7 +136,34 @@ export default function EpisodeList() {
         {tagFilters}
       </Chips>
 
-      {filteredEpisodes}
+      {displayedEpisodes}
+
+      <Pagination
+        total={pagedEpisodeData.length}
+        withEdges
+        color="giBlue"
+        position="center"
+        mt="xl"
+        size="lg"
+        page={page}
+        onChange={setPage}
+        getItemAriaLabel={(page) => {
+          switch (page) {
+            case "dots":
+              return "Dots"
+            case "prev":
+              return "Previous page"
+            case "next":
+              return "Next page"
+            case "first":
+              return "First page"
+            case "last":
+              return "Last page"
+            default:
+              return `Page ${page}`
+          }
+        }}
+      />
     </Container>
   )
 }
