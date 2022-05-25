@@ -77,7 +77,7 @@ export default function EpisodeCard({
       shadow="md"
     >
       <Group spacing={0} className={classes.group}>
-        <Link to={`/${slug}`} className={classes.img}>
+        <Link to={`/episodes/${slug}`} className={classes.img}>
           <GatsbyImage image={img} alt="" style={{ height: "100%" }} />
         </Link>
         <div className={classes.body}>
@@ -90,7 +90,7 @@ export default function EpisodeCard({
           </Group>
           <Title
             component={Link}
-            to={`/${slug}`}
+            to={`/episodes/${slug}`}
             order={3}
             className={classes.title}
           >

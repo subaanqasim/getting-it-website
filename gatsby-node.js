@@ -27,7 +27,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   data.allContentfulPodcasts.edges.forEach((ep) => {
     createPage({
-      path: `/${ep.node.slug}`,
+      path: `/episodes/${ep.node.slug}`,
       component: episodePageTemplate,
       context: {
         id: ep.node.id,

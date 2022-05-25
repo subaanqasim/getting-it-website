@@ -176,7 +176,11 @@ export default function Footer() {
 
   const latestEpisodesLinks = episodeData.map((ep) => (
     <div key={ep.id} className={classes.episodeLinks}>
-      <Text className={classes.link} component={Link} to={ep.slug}>
+      <Text
+        className={classes.link}
+        component={Link}
+        to={`/episodes/${ep.slug}`}
+      >
         {ep.episodeTitle}
       </Text>
       <Text
