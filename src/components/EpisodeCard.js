@@ -1,8 +1,8 @@
 import React from "react"
-import { createStyles, Card, Text, Group, Badge, Title } from "@mantine/core"
+import { createStyles, Card, Text, Group, Title } from "@mantine/core"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { CalendarEvent, Clock, List } from "tabler-icons-react"
 import { Link } from "gatsby"
+import EpisodeMetadata from "./EpisodeMetadata"
 
 const BREAKPOINT = "@media (max-width: 768px)"
 const useStyles = createStyles((theme) => ({
@@ -48,10 +48,6 @@ const useStyles = createStyles((theme) => ({
       maxHeight: "350px",
     },
   },
-
-  icon: {
-    strokeWidth: "1.5px",
-  },
 }))
 
 export default function EpisodeCard({
@@ -81,13 +77,6 @@ export default function EpisodeCard({
           <GatsbyImage image={img} alt="" style={{ height: "100%" }} />
         </Link>
         <div className={classes.body}>
-          <Group spacing="0.75em" mb="xs">
-            {tags.map((tag, i) => (
-              <Badge key={i} radius="sm">
-                {tag.name}
-              </Badge>
-            ))}
-          </Group>
           <Title
             component={Link}
             to={`/episodes/${slug}`}
@@ -97,35 +86,12 @@ export default function EpisodeCard({
             {title}
           </Title>
 
-          <Group spacing="sm" mt="xs" my="md">
-            <Group spacing="0.25em" noWrap>
-              <Clock className={classes.icon} size={16} />
-              <Text size="xs" color="dimmed">
-                {`${duration} mins`}
-              </Text>
-            </Group>
-
-            <Text size="xs" color="dimmed">
-              /
-            </Text>
-
-            <Group spacing="0.25em" noWrap>
-              <CalendarEvent className={classes.icon} size={16} />
-              <Text size="xs" color="dimmed">
-                {pubDate}
-              </Text>
-            </Group>
-
-            <Text size="xs" color="dimmed">
-              /
-            </Text>
-            <Group spacing="0.25em" noWrap>
-              <List className={classes.icon} size={16} />
-              <Text size="xs" color="dimmed">
-                {`ep. ${epNum}`}
-              </Text>
-            </Group>
-          </Group>
+          <EpisodeMetadata
+            tags={tags}
+            duration={duration}
+            epNum={epNum}
+            pubDate={pubDate}
+          />
 
           <Text mb="md" size="sm">
             {excerpt}

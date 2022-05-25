@@ -1,8 +1,8 @@
 import React from "react"
-import { Container, Text, Group, Badge, createStyles } from "@mantine/core"
+import { Container, createStyles } from "@mantine/core"
 import Heading1 from "../Heading1"
-import { CalendarEvent, Clock, List } from "tabler-icons-react"
 import { GatsbyImage } from "gatsby-plugin-image"
+import EpisodeMetadata from "../EpisodeMetadata"
 
 const useStyles = createStyles((theme) => ({
   icon: {
@@ -54,32 +54,16 @@ export default function EpisodePageHeader({ epData }) {
           <Heading1 title={episodeTitle} small={true} />
         </div>
 
-        <Group spacing="0.75em" mb="xs">
-          {metadata.tags.map((tag, i) => (
-            <Badge size="lg" key={i} radius="sm">
-              {tag.name}
-            </Badge>
-          ))}
-        </Group>
-        <Group spacing="sm" mt="xs" my="md">
-          <Group spacing="0.25em" noWrap>
-            <Clock className={classes.icon} size={16} />
-            <Text size="md">{`${duration} mins`}</Text>
-          </Group>
-
-          <Text size="md">/</Text>
-
-          <Group spacing="0.25em" noWrap>
-            <CalendarEvent className={classes.icon} size={16} />
-            <Text size="md">{datePublished}</Text>
-          </Group>
-
-          <Text size="xs">/</Text>
-          <Group spacing="0.25em" noWrap>
-            <List className={classes.icon} size={16} />
-            <Text size="md">{`ep. ${episodeNumber}`}</Text>
-          </Group>
-        </Group>
+        <EpisodeMetadata
+          mt={0}
+          textColor=""
+          textSize="md"
+          badgeSize="lg"
+          tags={metadata.tags}
+          duration={duration}
+          epNum={episodeNumber}
+          pubDate={datePublished}
+        />
 
         <div>
           <iframe
