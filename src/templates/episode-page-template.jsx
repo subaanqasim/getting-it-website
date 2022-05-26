@@ -5,6 +5,7 @@ import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
 import EpisodePageHeader from "../components/EpisodePage/EpisodePageHeader/EpisodePageHeader"
 import MdxProvider from "../components/EpisodePage/Mdx/MdxProvider"
 import PodcastLinksGrid from "../components/PodcastLinksGrid/PodcastLinksGrid"
+import EpisodeSiblings from "../components/EpisodePage/EpisodeSiblings/EpisodeSiblings"
 import { useMediaQuery } from "@mantine/hooks"
 
 export default function EpisodePageTemplate({ data }) {
@@ -42,6 +43,8 @@ export default function EpisodePageTemplate({ data }) {
             Choose podcast platform
           </Button>
         )}
+
+        <EpisodeSiblings next={next} previous={previous} />
 
         <MdxProvider>
           <MDXRenderer>{current.notes.childMdx.body}</MDXRenderer>
