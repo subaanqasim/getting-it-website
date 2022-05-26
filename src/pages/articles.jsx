@@ -1,13 +1,12 @@
 import React from "react"
 import { Container, Text } from "@mantine/core"
 import { News } from "tabler-icons-react"
-import Layout from "../components/global/Layout"
 import PageHeader from "../components/PageHeader"
 import LatestEpisodes from "../components/LatestEpisodes"
 
 export default function articles() {
   return (
-    <Layout>
+    <>
       <PageHeader
         title="Articles"
         subtitle="Written ramblings rather than verbal ones"
@@ -29,6 +28,6 @@ export default function articles() {
         </Text>
       </Container>
       <LatestEpisodes />
-    </Layout>
+    </>
   )
 }

@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { graphql } from "gatsby"
 import { Button, Container, Modal } from "@mantine/core"
 import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
-import Layout from "../components/global/Layout"
 import EpisodePageHeader from "../components/EpisodePage/EpisodePageHeader/EpisodePageHeader"
 import MdxProvider from "../components/EpisodePage/Mdx/MdxProvider"
 import PodcastLinksGrid from "../components/PodcastLinksGrid/PodcastLinksGrid"
@@ -14,7 +13,7 @@ export default function EpisodePageTemplate({ data }) {
   const [modalOpen, setModalOpen] = useState(false)
 
   return (
-    <Layout>
+    <>
       <EpisodePageHeader epData={current} />
       <Container size="sm">
         <Modal
@@ -48,7 +47,7 @@ export default function EpisodePageTemplate({ data }) {
           <MDXRenderer>{current.notes.childMdx.body}</MDXRenderer>
         </MdxProvider>
       </Container>
-    </Layout>
+    </>
   )
 }
 
