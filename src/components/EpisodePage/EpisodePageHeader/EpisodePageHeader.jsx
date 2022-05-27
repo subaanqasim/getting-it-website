@@ -13,7 +13,7 @@ export default function EpisodePageHeader({ epData }) {
     metadata,
     duration,
     episodeNumber,
-    datePublished,
+    stringDate,
     thumbnail,
   } = epData
 
@@ -32,7 +32,7 @@ export default function EpisodePageHeader({ epData }) {
           tags={metadata.tags}
           duration={duration}
           epNum={episodeNumber}
-          pubDate={datePublished}
+          pubDate={stringDate}
         />
 
         <div>

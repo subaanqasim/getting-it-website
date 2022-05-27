@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import { Button, Container, Modal } from "@mantine/core"
+import { useMediaQuery } from "@mantine/hooks"
 import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
 import EpisodePageHeader from "../components/EpisodePage/EpisodePageHeader/EpisodePageHeader"
 import MdxProvider from "../components/EpisodePage/Mdx/MdxProvider"
 import PodcastLinksGrid from "../components/PodcastLinksGrid/PodcastLinksGrid"
 import EpisodeSiblings from "../components/EpisodePage/EpisodeSiblings/EpisodeSiblings"
-import { useMediaQuery } from "@mantine/hooks"
+import PodcastSeo from "../components/seo/PodcastSeo"
 
 export default function EpisodePageTemplate({ data }) {
   const { current, next, previous } = data
@@ -15,6 +16,7 @@ export default function EpisodePageTemplate({ data }) {
 
   return (
     <>
+      <PodcastSeo epData={current} />
       <EpisodePageHeader epData={current} />
       <Container size="sm">
         <Modal
@@ -60,9 +62,18 @@ export const query = graphql`
       episodeTitle
       episodeNumber
       duration
-      datePublished(formatString: "MMM DD, YYYY")
+      stringDate: datePublished(formatString: "MMM DD, YYYY")
+      isoDate: datePublished(formatString: "YYYY-MM-DD[T]HH:mm:ss.SSS[Z]")
+      updatedAt
       audioEmbedLink
+      slug
+      excerpt
+      keywords
       thumbnail {
+        title
+        width
+        height
+        url
         gatsbyImageData(
           layout: FULL_WIDTH
           placeholder: DOMINANT_COLOR
@@ -87,13 +98,13 @@ export const query = graphql`
     next: contentfulPodcasts(id: { eq: $nextEpId }) {
       episodeTitle
       episodeNumber
-      datePublished
+      datePublished(formatString: "MMM DD, YYYY")
       slug
     }
     previous: contentfulPodcasts(id: { eq: $prevEpId }) {
       episodeTitle
       episodeNumber
-      datePublished
+      datePublished(formatString: "MMM DD, YYYY")
       slug
     }
   }

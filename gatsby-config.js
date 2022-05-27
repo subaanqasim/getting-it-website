@@ -4,21 +4,22 @@
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
 
-require("dotenv").config({
+require(`dotenv`).config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: `Getting It`,
+    siteName: `Getting It`,
+    title: `The Podcast About Learning Everything`,
     siteUrl: `https://www.gettingit.co.uk`,
-    description: `The podcast about learning everything.`,
+    description: `Getting It is a podcast where we try to understand life just a little bit more. Hosted by Subaan Qasim and Daniel Redfearn, we explore topics both familiar and unfamiliar to us to find out what makes them interesting, so that we can expand our horizons and further our understanding of the world and people around us.`,
     social: {
-      twitter: "https://twitter.com/gettingit_pod",
-      instagram: "https://instagram.com/gettingit_pod",
-      twitterUsername: "@gettingit_pod",
-      email: "thoughts@gettingit.co.uk",
+      twitter: `https://twitter.com/gettingit_pod`,
+      instagram: `https://instagram.com/gettingit_pod`,
+      twitterUsername: `@gettingit_pod`,
+      email: `thoughts@gettingit.co.uk`,
     },
   },
 
@@ -71,11 +72,29 @@ module.exports = {
               maxWidth: 720,
               linkImagesToOriginal: false,
               withWebp: true,
-              loading: "lazy",
+              loading: `lazy`,
             },
           },
         ],
-        rehypePlugins: [require("rehype-slug")],
+        rehypePlugins: [require(`rehype-slug`)],
+      },
+    },
+
+    {
+      resolve: `gatsby-plugin-next-seo`,
+      options: {
+        language: `en`,
+        titleTemplate: `%s | Getting It`,
+        openGraph: {
+          type: `website`,
+          locale: `en_GB`,
+          site_name: `Getting It`,
+        },
+        twitter: {
+          handle: `@gettingit_pod`,
+          site: `@gettingit_pod`,
+          cardType: `summary_large_image`,
+        },
       },
     },
   ],

@@ -3,10 +3,16 @@ import { Container, Text } from "@mantine/core"
 import { News } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
 import LatestEpisodes from "../components/LatestEpisodes"
+import WebpageSeo from "../components/seo/WebpageSeo"
 
 export default function articles() {
   return (
     <>
+      <WebpageSeo
+        title="Articles"
+        slug="articles"
+        description="Written ramblings rather than the usual verbal ones on the Getting It podcast. Essentially, a brain dump of thoughts, ideas and opinions."
+      />
       <PageHeader
         title="Articles"
         subtitle="Written ramblings rather than verbal ones"

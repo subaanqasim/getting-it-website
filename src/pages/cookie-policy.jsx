@@ -1,10 +1,12 @@
 import React from "react"
 import { Cookie } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
+import WebpageSeo from "../components/seo/WebpageSeo"
 
 export default function cookiePolicy() {
   return (
     <>
+      <WebpageSeo title="Cookie Policy" slug="cookie-policy" />
       <PageHeader
         title="Cookie Policy"
         subtitle="Brownies are better tbh"
