@@ -6,7 +6,7 @@ export default createStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    minHeight: "95vh",
+    minHeight: "100vh",
     // backgroundColor:
     //   theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
 
@@ -139,10 +139,10 @@ export default createStyles((theme) => ({
   },
 
   arrow: {
-    strokeWidth: "1px",
     alignSelf: "center",
     position: "absolute",
-    bottom: "1em",
+    bottom: "60px",
     zIndex: 2,
+    cursor: "pointer",
   },
 }))

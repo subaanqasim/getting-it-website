@@ -58,7 +58,7 @@ export default function LatestEpisodes() {
   ))
 
   return (
-    <section>
+    <section id="latest">
       <Container size="xl" mt="8em">
         <Heading2
           title="Latest Episodes"

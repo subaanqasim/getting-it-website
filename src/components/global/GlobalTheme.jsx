@@ -20,6 +20,9 @@ export default function GlobalTheme() {
               ? theme.colors.gray[0]
               : theme.colors.gray[9],
         },
+        // html: {
+        //   scrollBehavior: "smooth",
+        // },
       })}
     />
   )

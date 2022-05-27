@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Container, Text, Button, Group, Modal } from "@mantine/core"
 import { Link } from "gatsby"
 import { ArrowDown } from "tabler-icons-react"
+import { motion } from "framer-motion"
 import PodcastLinksGrid from "../PodcastLinksGrid/PodcastLinksGrid"
 import useStyles from "./HeroSection.styles"
 
@@ -10,6 +11,7 @@ const HeroImage = React.lazy(() => import("./Hero3dImage/Hero3DImage"))
 export default function HeroSection() {
   const { classes, cx } = useStyles()
   const [modalOpen, setModalOpen] = useState(false)
+  const [clicked, setClicked] = useState(false)
   const isSSR = typeof window === "undefined"
 
   return (
@@ -76,7 +78,29 @@ export default function HeroSection() {
               </Button>
             </Group>
           </div>
-          <ArrowDown size={48} className={classes.arrow} />
+
+          <motion.div
+            animate={{ y: 0, opacity: 0.75 }}
+            initial={{ y: -10, opacity: 0 }}
+            transition={{
+              ease: "easeOut",
+              duration: 1,
+            }}
+            whileHover={{
+              scale: 1.2,
+              y: 20,
+              transition: { duration: 0.3, ease: "easeInOut" },
+            }}
+            className={classes.arrow}
+            onClick={() => {
+              if (!clicked) {
+                window.scrollBy(0, window.innerHeight)
+                setClicked(true)
+              }
+            }}
+          >
+            <ArrowDown size={48} style={{ strokeWidth: 1 }} />
+          </motion.div>
 
           <Modal
             centered
