@@ -100,6 +100,19 @@ export default function PodcastSeo({ epData }) {
           keywords: keywords
             ? keywords.join(",")
             : "getting it,podcast,learning,education",
+          breadcrumb: {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: "1",
+                item: {
+                  "@id": `${site.siteMetadata.siteUrl}/episodes`,
+                  name: "Episodes",
+                },
+              },
+            ],
+          },
         }}
       />
     </>
