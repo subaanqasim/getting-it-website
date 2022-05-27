@@ -3,7 +3,7 @@ import { Social } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
 import WebpageSeo from "../components/seo/WebpageSeo"
 
-export default function connect() {
+export default function Connect() {
   return (
     <>
       <WebpageSeo

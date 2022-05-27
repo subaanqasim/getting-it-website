@@ -4,7 +4,7 @@ import EpisodeList from "../components/EpisodeList"
 import PageHeader from "../components/PageHeader"
 import WebpageSeo from "../components/seo/WebpageSeo"
 
-export default function episodes() {
+export default function Episodes() {
   return (
     <>
       <WebpageSeo

@@ -5,7 +5,7 @@ import PageHeader from "../components/PageHeader"
 import LatestEpisodes from "../components/LatestEpisodes"
 import WebpageSeo from "../components/seo/WebpageSeo"
 
-export default function articles() {
+export default function Articles() {
   return (
     <>
       <WebpageSeo

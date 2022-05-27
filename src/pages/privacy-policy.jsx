@@ -3,7 +3,7 @@ import { ShieldLock } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
 import WebpageSeo from "../components/seo/WebpageSeo"
 
-export default function privacyPolicy() {
+export default function PrivacyPolicy() {
   return (
     <>
       <WebpageSeo title="Privacy Policy" slug="privacy-policy" />

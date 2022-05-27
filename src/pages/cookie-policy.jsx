@@ -3,7 +3,7 @@ import { Cookie } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
 import WebpageSeo from "../components/seo/WebpageSeo"
 
-export default function cookiePolicy() {
+export default function CookiePolicy() {
   return (
     <>
       <WebpageSeo title="Cookie Policy" slug="cookie-policy" />
