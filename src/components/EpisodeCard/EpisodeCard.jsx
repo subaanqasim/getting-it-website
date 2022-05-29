@@ -2,8 +2,10 @@ import React from "react"
 import { Card, Text, Group, Title } from "@mantine/core"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
+import { motion } from "framer-motion"
 import EpisodeMetadata from "../EpisodeMetadata/EpisodeMetadata"
 import useStyles from "./EpisodeCard.styles"
+import { animFadeUpInOnScroll, episodeCardList } from "../../utils/animations"
 
 export default function EpisodeCard({
   tags,
@@ -15,44 +17,54 @@ export default function EpisodeCard({
   excerpt,
   img,
   slug,
+  homePage = false,
 }) {
   const { classes } = useStyles()
 
   return (
-    <Card
-      withBorder
-      radius="md"
-      p={0}
-      mt="2em"
-      className={classes.card}
-      shadow="md"
+    <motion.article
+      variants={homePage ? animFadeUpInOnScroll : episodeCardList}
+      initial="initial"
+      whileInView="whileInView"
+      animate="animate"
+      exit="exit"
+      viewport={{ once: true }}
+      layout
     >
-      <Group spacing={0} className={classes.group}>
-        <Link to={`/episodes/${slug}`} className={classes.img}>
-          <GatsbyImage image={img} alt="" style={{ height: "100%" }} />
-        </Link>
-        <div className={classes.body}>
-          <Title
-            component={Link}
-            to={`/episodes/${slug}`}
-            order={3}
-            className={classes.title}
-          >
-            {title}
-          </Title>
+      <Card
+        withBorder
+        radius="md"
+        p={0}
+        mt="2em"
+        className={classes.card}
+        shadow="md"
+      >
+        <Group spacing={0} className={classes.group}>
+          <Link to={`/episodes/${slug}`} className={classes.img}>
+            <GatsbyImage image={img} alt="" style={{ height: "100%" }} />
+          </Link>
+          <div className={classes.body}>
+            <Title
+              component={Link}
+              to={`/episodes/${slug}`}
+              order={3}
+              className={classes.title}
+            >
+              {title}
+            </Title>
 
-          <EpisodeMetadata
-            tags={tags}
-            duration={duration}
-            epNum={epNum}
-            pubDate={pubDate}
-          />
+            <EpisodeMetadata
+              tags={tags}
+              duration={duration}
+              epNum={epNum}
+              pubDate={pubDate}
+            />
 
-          <Text mb="md" size="sm">
-            {excerpt}
-          </Text>
+            <Text mb="md" size="sm">
+              {excerpt}
+            </Text>
 
-          {/* <iframe
+            {/* <iframe
             title={title}
             style={{ borderRadius: "12px" }}
             src={`${embedURL}?utm_source=generator&theme=0`}
@@ -62,8 +74,9 @@ export default function EpisodeCard({
             allowFullScreen=""
             allow="encrypted-media *; fullscreen; picture-in-picture"
           ></iframe> */}
-        </div>
-      </Group>
-    </Card>
+          </div>
+        </Group>
+      </Card>
+    </motion.article>
   )
 }

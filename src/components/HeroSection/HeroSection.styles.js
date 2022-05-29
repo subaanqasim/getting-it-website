@@ -95,6 +95,12 @@ export default createStyles((theme) => ({
 
   controls: {
     marginTop: theme.spacing.xl * 2,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    flexWrap: "wrap",
+    gap: theme.spacing.md,
 
     [theme.fn.smallerThan("xs")]: {
       marginTop: theme.spacing.xl,

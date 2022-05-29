@@ -1,6 +1,8 @@
 import React from "react"
 import { Container, Button, Group } from "@mantine/core"
 import { Link, useStaticQuery, graphql } from "gatsby"
+import { motion } from "framer-motion"
+import { animFadeUpInOnScroll } from "../utils/animations"
 import EpisodeCard from "./EpisodeCard/EpisodeCard"
 import { Microphone } from "tabler-icons-react"
 import Heading2 from "./Heading2/Heading2"
@@ -54,11 +56,18 @@ export default function LatestEpisodes() {
       embedURL={ep.audioEmbedLink}
       img={ep.thumbnail.gatsbyImageData}
       slug={ep.slug}
+      homePage={true}
     />
   ))
 
   return (
-    <section id="latest">
+    <motion.section
+      id="latest"
+      variants={animFadeUpInOnScroll}
+      initial="initial"
+      whileInView="whileInView"
+      viewport={{ once: true }}
+    >
       <Container size="xl" mt="8em">
         <Heading2
           title="Latest Episodes"
@@ -83,6 +92,6 @@ export default function LatestEpisodes() {
           </Button>
         </Group>
       </Container>
-    </section>
+    </motion.section>
   )
 }

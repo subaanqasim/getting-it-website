@@ -19,6 +19,8 @@ import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Heading2 from "../Heading2/Heading2"
 import useStyles from "./TheHosts.styles"
+import { motion } from "framer-motion"
+import { animFadeUpInOnScroll } from "../../utils/animations"
 
 const query = graphql`
   {
@@ -123,7 +125,12 @@ export default function LatestEpisodes() {
   ))
 
   return (
-    <section>
+    <motion.section
+      variants={animFadeUpInOnScroll}
+      initial="initial"
+      whileInView="whileInView"
+      viewport={{ once: true }}
+    >
       <Container size="xl" mt="8em">
         <Heading2
           title="The Hosts"
@@ -134,6 +141,6 @@ export default function LatestEpisodes() {
           {hosts}
         </Grid>
       </Container>
-    </section>
+    </motion.section>
   )
 }

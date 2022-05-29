@@ -17,7 +17,9 @@ export default function Episodes() {
         subtitle="All of our episodes in one place"
         subtitleIcon={<Microphone size={16} />}
       />
-      <EpisodeList />
+      <main>
+        <EpisodeList />
+      </main>
     </>
   )
 }

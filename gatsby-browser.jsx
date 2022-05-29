@@ -1,3 +1,4 @@
+const { MotionConfig } = require("framer-motion")
 const React = require("react")
 const Layout = require("./src/components/global/Layout").default
 const ThemeProvider = require("./src/components/global/ThemeProvider").default
@@ -9,5 +10,9 @@ exports.wrapPageElement = ({ element, props }) => {
 }
 
 exports.wrapRootElement = ({ element }) => {
-  return <ThemeProvider>{element}</ThemeProvider>
+  return (
+    <ThemeProvider>
+      <MotionConfig reducedMotion="user">{element}</MotionConfig>
+    </ThemeProvider>
+  )
 }

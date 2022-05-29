@@ -54,6 +54,13 @@ export default createStyles((theme) => ({
   },
 
   links: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: 20,
+
     [theme.fn.smallerThan("sm")]: {
       display: "none",
     },
@@ -98,12 +105,14 @@ export default createStyles((theme) => ({
         theme.colorScheme === "dark"
           ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
           : theme.colors[theme.primaryColor][0],
-      color:
-        theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 3 : 7],
+      // color:
+      //   theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 1 : 9],
     },
   },
 
   searchIcon: {
+    display: "flex",
+    alignItems: "center",
     [theme.fn.smallerThan("sm")]: {
       marginLeft: "auto",
       marginRight: "16px",

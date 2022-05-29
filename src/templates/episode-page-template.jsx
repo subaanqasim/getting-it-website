@@ -18,40 +18,42 @@ export default function EpisodePageTemplate({ data }) {
     <>
       <PodcastSeo epData={current} />
       <EpisodePageHeader epData={current} />
-      <Container size="sm">
-        <Modal
-          centered
-          padding="md"
-          opened={modalOpen}
-          overflow="inside"
-          onClose={() => setModalOpen(false)}
-          title="Choose wisely..."
-        >
-          <PodcastLinksGrid />
-        </Modal>
-
-        {!smallScreen && <PodcastLinksGrid />}
-
-        {smallScreen && (
-          <Button
-            fullWidth
-            size="md"
-            mb="xl"
-            onClick={() => setModalOpen(true)}
-            variant="gradient"
-            gradient={{ from: "blue", to: "giBlue", deg: 60 }}
-            color="giBlue"
+      <main>
+        <Container size="sm">
+          <Modal
+            centered
+            padding="md"
+            opened={modalOpen}
+            overflow="inside"
+            onClose={() => setModalOpen(false)}
+            title="Choose wisely..."
           >
-            Choose podcast platform
-          </Button>
-        )}
+            <PodcastLinksGrid />
+          </Modal>
 
-        <EpisodeSiblings next={next} previous={previous} />
+          {!smallScreen && <PodcastLinksGrid />}
 
-        <MdxProvider>
-          <MDXRenderer>{current.notes.childMdx.body}</MDXRenderer>
-        </MdxProvider>
-      </Container>
+          {smallScreen && (
+            <Button
+              fullWidth
+              size="md"
+              mb="xl"
+              onClick={() => setModalOpen(true)}
+              variant="gradient"
+              gradient={{ from: "blue", to: "giBlue", deg: 60 }}
+              color="giBlue"
+            >
+              Choose podcast platform
+            </Button>
+          )}
+
+          <EpisodeSiblings next={next} previous={previous} />
+
+          <MdxProvider>
+            <MDXRenderer>{current.notes.childMdx.body}</MDXRenderer>
+          </MdxProvider>
+        </Container>
+      </main>
     </>
   )
 }

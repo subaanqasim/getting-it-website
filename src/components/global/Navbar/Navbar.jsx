@@ -1,19 +1,20 @@
 import React from "react"
-import {
-  Header,
-  Container,
-  Group,
-  Burger,
-  Paper,
-  Transition,
-} from "@mantine/core"
-import { useBooleanToggle } from "@mantine/hooks"
+import { Header, Container, Burger, Paper, Transition } from "@mantine/core"
+import { useBooleanToggle, useMediaQuery } from "@mantine/hooks"
 import {
   motion,
   useSpring,
   useTransform,
   useViewportScroll,
 } from "framer-motion"
+import {
+  animNavbar,
+  animNavLinksDiv,
+  animNavLink,
+  animNavLogo,
+  animNavSearch,
+  animNavBurger,
+} from "../../../utils/animations"
 import { Search } from "tabler-icons-react"
 import { Link } from "gatsby"
 import useStyles, { HEADER_HEIGHT } from "./Navbar.styles"
@@ -47,27 +48,36 @@ export default function Navbar() {
   const { scrollYProgress } = useViewportScroll()
   const yRange = useTransform(scrollYProgress, [0, 0.9], [0, 1])
   const pathLength = useSpring(yRange, { stiffness: 400, damping: 90 })
+  const mobile = useMediaQuery("(max-width: 768px)")
 
   const items = links.map((link) => (
-    <Link
-      key={link.label}
-      to={link.link}
-      className={classes.link}
-      activeClassName={classes.linkActive}
-      onClick={() => {
-        toggleOpened(false)
-      }}
-    >
-      {link.label}
-    </Link>
+    <motion.div key={link.label} variants={animNavLink}>
+      <Link
+        to={link.link}
+        className={classes.link}
+        activeClassName={classes.linkActive}
+        onClick={() => {
+          toggleOpened(false)
+        }}
+      >
+        {link.label}
+      </Link>
+    </motion.div>
   ))
 
   return (
-    <div className={classes.navWrapper}>
+    <motion.div
+      className={classes.navWrapper}
+      variants={animNavbar}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <Header height={HEADER_HEIGHT} className={classes.root}>
-        <Container className={classes.header} size="sm">
+        <Container size="sm" className={classes.header}>
           <Link to="/" style={{ display: "flex", alignItems: "center" }}>
-            <svg
+            <motion.svg
+              variants={animNavLogo}
               xmlns="http://www.w3.org/2000/svg"
               width="40"
               height="40"
@@ -93,19 +103,24 @@ export default function Navbar() {
                   scaleX: -1,
                 }}
               />
-            </svg>
+            </motion.svg>
           </Link>
-          <Group spacing="lg" className={classes.links}>
+          <motion.div className={classes.links} variants={animNavLinksDiv}>
             {items}
-          </Group>
-          <Search className={classes.searchIcon} />
+          </motion.div>
+          <motion.div
+            className={classes.searchIcon}
+            variants={animNavSearch(mobile)}
+          >
+            <Search />
+          </motion.div>
 
-          <Burger
-            opened={opened}
-            onClick={() => toggleOpened()}
+          <motion.div
             className={classes.burger}
-            size="sm"
-          />
+            variants={animNavBurger(mobile)}
+          >
+            <Burger opened={opened} onClick={() => toggleOpened()} size="sm" />
+          </motion.div>
 
           <Transition
             transition="pop-top-right"
@@ -120,6 +135,6 @@ export default function Navbar() {
           </Transition>
         </Container>
       </Header>
-    </div>
+    </motion.div>
   )
 }

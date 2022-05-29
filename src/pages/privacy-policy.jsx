@@ -12,6 +12,7 @@ export default function PrivacyPolicy() {
         subtitle="Boring, but important... I guess"
         subtitleIcon={<ShieldLock size={16} />}
       />
+      <main></main>
     </>
   )
 }

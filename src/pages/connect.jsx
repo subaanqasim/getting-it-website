@@ -16,6 +16,7 @@ export default function Connect() {
         subtitle="Get in touch"
         subtitleIcon={<Social size={16} />}
       />
+      <main></main>
     </>
   )
 }

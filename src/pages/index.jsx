@@ -19,11 +19,12 @@ export default function Home() {
           },
         ]}
       />
-
       <HeroSection />
-      <LatestEpisodes />
-      <TheHosts />
-      <WhatIsGettingIt />
+      <main>
+        <LatestEpisodes />
+        <TheHosts />
+        <WhatIsGettingIt />
+      </main>
     </>
   )
 }

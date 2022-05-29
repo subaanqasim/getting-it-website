@@ -13,6 +13,8 @@ import getTagsList from "../utils/getTagsList"
 import { Search } from "tabler-icons-react"
 import { useOs } from "@mantine/hooks"
 import getPages from "../utils/getPages"
+import { motion } from "framer-motion"
+import { animEpisodeSearch, animEpisodeTags } from "../utils/animations"
 
 const query = graphql`
   {
@@ -50,7 +52,7 @@ export default function EpisodeList() {
   const [pagedEpisodeData, setPagedEpisodeData] = useState([])
   const [displayedEpisodes, setDisplayedEpisodes] = useState([])
   const isMounted = useRef(false)
-  const ITEMS_PER_PAGE = 4
+  const ITEMS_PER_PAGE = 5
 
   const {
     allContentfulPodcasts: { nodes: allEpisodeData },
@@ -114,56 +116,72 @@ export default function EpisodeList() {
 
   return (
     <Container size="xl">
-      <TextInput
-        size="md"
-        placeholder="Search all episodes"
-        my="lg"
-        mx="auto"
-        style={{ maxWidth: 850 }}
-        icon={<Search size={16} />}
-        rightSection={rightSection}
-      />
-      <Chips
-        size="md"
-        spacing="md"
-        radius="sm"
-        variant="outline"
-        value={filter}
-        onChange={setFilter}
-        style={{ display: "flex", justifyContent: "center" }}
+      <motion.div
+        variants={animEpisodeSearch}
+        initial="initial"
+        animate="animate"
       >
-        <Chip value="All">All</Chip>
-        {tagFilters}
-      </Chips>
+        <TextInput
+          type="search"
+          size="md"
+          placeholder="Search all episodes"
+          my="lg"
+          mx="auto"
+          style={{ maxWidth: 850 }}
+          icon={<Search size={16} />}
+          rightSection={rightSection}
+        />
+      </motion.div>
+
+      <motion.div
+        variants={animEpisodeTags}
+        animate="animate"
+        initial="initial"
+      >
+        <Chips
+          size="md"
+          spacing="md"
+          radius="sm"
+          variant="outline"
+          value={filter}
+          onChange={setFilter}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <Chip value="All">All</Chip>
+          {tagFilters}
+        </Chips>
+      </motion.div>
 
       {displayedEpisodes}
 
-      <Pagination
-        total={pagedEpisodeData.length}
-        withEdges
-        color="giBlue"
-        position="center"
-        mt="xl"
-        size="lg"
-        page={page}
-        onChange={setPage}
-        getItemAriaLabel={(page) => {
-          switch (page) {
-            case "dots":
-              return "Dots"
-            case "prev":
-              return "Previous page"
-            case "next":
-              return "Next page"
-            case "first":
-              return "First page"
-            case "last":
-              return "Last page"
-            default:
-              return `Page ${page}`
-          }
-        }}
-      />
+      <motion.div layout>
+        <Pagination
+          total={pagedEpisodeData.length}
+          withEdges
+          color="giBlue"
+          position="center"
+          mt="xl"
+          size="lg"
+          page={page}
+          onChange={setPage}
+          getItemAriaLabel={(page) => {
+            switch (page) {
+              case "dots":
+                return "Dots"
+              case "prev":
+                return "Previous page"
+              case "next":
+                return "Next page"
+              case "first":
+                return "First page"
+              case "last":
+                return "Last page"
+              default:
+                return `Page ${page}`
+            }
+          }}
+        />
+      </motion.div>
     </Container>
   )
 }

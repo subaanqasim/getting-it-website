@@ -18,22 +18,24 @@ export default function Articles() {
         subtitle="Written ramblings rather than verbal ones"
         subtitleIcon={<News size={16} />}
       />
-      <Container size="lg">
-        <Text size="xl">Unfortunately we haven't written anything yet.</Text>
-        <Text color="dimmed" size="xs">
-          Most likely because we're lazy.
-        </Text>
-        <Text
-          mt="md"
-          size="xl"
-          weight={700}
-          variant="gradient"
-          gradient={{ from: "giBlue", to: "giPink", deg: 45 }}
-        >
-          Hopefully we'll write something soon.
-        </Text>
-      </Container>
-      <LatestEpisodes />
+      <main>
+        <Container size="lg">
+          <Text size="xl">Unfortunately we haven't written anything yet.</Text>
+          <Text color="dimmed" size="xs">
+            Most likely because we're lazy.
+          </Text>
+          <Text
+            mt="md"
+            size="xl"
+            weight={700}
+            variant="gradient"
+            gradient={{ from: "giBlue", to: "giPink", deg: 45 }}
+          >
+            Hopefully we'll write something soon.
+          </Text>
+        </Container>
+        <LatestEpisodes />
+      </main>
     </>
   )
 }

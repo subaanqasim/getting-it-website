@@ -12,6 +12,7 @@ export default function CookiePolicy() {
         subtitle="Brownies are better tbh"
         subtitleIcon={<Cookie size={16} />}
       />
+      <main></main>
     </>
   )
 }

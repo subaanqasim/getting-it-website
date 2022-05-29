@@ -11,11 +11,13 @@ export default function About() {
         description="Learn more about hosts and why the Getting It podcast was made. We explore topics both familiar and unfamiliar to us to find out what makes them interesting, so that we can expand our horizons and further our understanding of the world and people around us."
         slug="about"
       />
+
       <PageHeader
         title="Our Ethos"
         subtitle="The who, what, where and why"
         subtitleIcon={<YinYang size={16} />}
       />
+      <main></main>
     </>
   )
 }
