@@ -39,7 +39,7 @@ const query = graphql`
   }
 `
 
-export default function LatestEpisodes() {
+export default function LatestEpisodes({ reference }) {
   const {
     allContentfulPodcasts: { nodes: episodeData },
   } = useStaticQuery(query)
@@ -63,6 +63,7 @@ export default function LatestEpisodes() {
   return (
     <motion.section
       id="latest"
+      ref={reference}
       variants={animFadeUpInOnScroll}
       initial="initial"
       whileInView="whileInView"

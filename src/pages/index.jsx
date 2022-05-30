@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import HeroSection from "../components/HeroSection/HeroSection"
 import LatestEpisodes from "../components/LatestEpisodes"
 import WebpageSeo from "../components/seo/WebpageSeo"
@@ -6,6 +6,11 @@ import TheHosts from "../components/TheHosts/TheHosts"
 import WhatIsGettingIt from "../components/WhatIsGettingIt"
 
 export default function Home() {
+  const latestEpSection = useRef(null)
+  const handleScroll = (ref) => {
+    window.scrollTo({ top: ref.current.offsetTop - 110, behavior: "smooth" })
+  }
+
   return (
     <>
       <WebpageSeo
@@ -19,9 +24,9 @@ export default function Home() {
           },
         ]}
       />
-      <HeroSection />
+      <HeroSection handleScroll={() => handleScroll(latestEpSection)} />
       <main>
-        <LatestEpisodes />
+        <LatestEpisodes reference={latestEpSection} />
         <TheHosts />
         <WhatIsGettingIt />
       </main>

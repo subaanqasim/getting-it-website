@@ -13,10 +13,9 @@ import {
 
 const HeroImage = React.lazy(() => import("./Hero3dImage/Hero3DImage"))
 
-export default function HeroSection() {
+export default function HeroSection({ handleScroll }) {
   const { classes, cx } = useStyles()
   const [modalOpen, setModalOpen] = useState(false)
-  const [clicked, setClicked] = useState(false)
   const isSSR = typeof window === "undefined"
 
   return (
@@ -102,12 +101,7 @@ export default function HeroSection() {
             animate="animate"
             whileHover="whileHover"
             className={classes.arrow}
-            onClick={() => {
-              if (!clicked) {
-                window.scrollBy(0, window.innerHeight)
-                setClicked(true)
-              }
-            }}
+            onClick={handleScroll}
           >
             <ArrowDown size={48} style={{ strokeWidth: 1 }} />
           </motion.div>
