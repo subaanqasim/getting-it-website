@@ -18,6 +18,7 @@ import {
 import { Search } from "tabler-icons-react"
 import { Link } from "gatsby"
 import useStyles, { HEADER_HEIGHT } from "./Navbar.styles"
+import { useSpotlight } from "@mantine/spotlight"
 
 const links = [
   {
@@ -45,6 +46,7 @@ const links = [
 export default function Navbar() {
   const [opened, toggleOpened] = useBooleanToggle(false)
   const { classes } = useStyles()
+  const spotlight = useSpotlight()
   const { scrollYProgress } = useViewportScroll()
   const yRange = useTransform(scrollYProgress, [0, 0.9], [0, 1])
   const pathLength = useSpring(yRange, { stiffness: 400, damping: 90 })
@@ -71,7 +73,6 @@ export default function Navbar() {
       variants={animNavbar}
       initial="initial"
       animate="animate"
-      exit="exit"
     >
       <Header height={HEADER_HEIGHT} className={classes.root}>
         <Container size="sm" className={classes.header}>
@@ -111,6 +112,8 @@ export default function Navbar() {
           <motion.div
             className={classes.searchIcon}
             variants={animNavSearch(mobile)}
+            onClick={spotlight.openSpotlight}
+            whileHover={{ scale: 1.15 }}
           >
             <Search />
           </motion.div>

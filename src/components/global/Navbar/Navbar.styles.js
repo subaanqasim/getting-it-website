@@ -113,6 +113,8 @@ export default createStyles((theme) => ({
   searchIcon: {
     display: "flex",
     alignItems: "center",
+    cursor: "pointer",
+
     [theme.fn.smallerThan("sm")]: {
       marginLeft: "auto",
       marginRight: "16px",
