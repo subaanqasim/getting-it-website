@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Container, Text, Button, Modal } from "@mantine/core"
 import { Link } from "gatsby"
 import { ArrowDown } from "tabler-icons-react"
-import { motion } from "framer-motion"
+import { motion, useTransform, useViewportScroll } from "framer-motion"
 import PodcastLinksGrid from "../PodcastLinksGrid/PodcastLinksGrid"
 import useStyles from "./HeroSection.styles"
 import {
@@ -17,6 +17,9 @@ export default function HeroSection({ handleScroll }) {
   const { classes, cx } = useStyles()
   const [modalOpen, setModalOpen] = useState(false)
   const isSSR = typeof window === "undefined"
+  const { scrollYProgress } = useViewportScroll()
+  const yLinkedOpacity = useTransform(scrollYProgress, [0, 0.25], [0.8, 0])
+  const yLinkedPosition = useTransform(scrollYProgress, [0, 0.25], [0, 60])
 
   return (
     <header>
@@ -102,6 +105,7 @@ export default function HeroSection({ handleScroll }) {
             whileHover="whileHover"
             className={classes.arrow}
             onClick={handleScroll}
+            style={{ opacity: yLinkedOpacity, y: yLinkedPosition }}
           >
             <ArrowDown size={48} style={{ strokeWidth: 1 }} />
           </motion.div>
