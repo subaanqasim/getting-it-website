@@ -11,7 +11,7 @@ import {
 import { useStaticQuery, graphql } from "gatsby"
 import EpisodeCard from "./EpisodeCard/EpisodeCard"
 import getTagsList from "../utils/getTagsList"
-import { Search } from "tabler-icons-react"
+import { Search, CircleX } from "tabler-icons-react"
 import { useOs } from "@mantine/hooks"
 import getPages from "../utils/getPages"
 import { motion } from "framer-motion"
@@ -121,7 +121,21 @@ export default function EpisodeList() {
     }
   }, [page, pagedEpisodeData])
 
-  const rightSection = (
+  const rightSection = searchQuery ? (
+    <motion.div
+      whileHover={{ scale: 1.1, rotate: 180, color: "#C1C2C5" }}
+      onClick={() => setSearchQuery("")}
+      style={{
+        strokeWidth: 1.5,
+        color: "#909296",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <CircleX />
+    </motion.div>
+  ) : (
     <div
       style={{
         display: "flex",
