@@ -6,6 +6,7 @@ import {
   Kbd,
   Pagination,
   TextInput,
+  Text,
 } from "@mantine/core"
 import { useStaticQuery, graphql } from "gatsby"
 import EpisodeCard from "./EpisodeCard/EpisodeCard"
@@ -51,6 +52,7 @@ export default function EpisodeList() {
   const [page, setPage] = useState(1)
   const [pagedEpisodeData, setPagedEpisodeData] = useState([])
   const [displayedEpisodes, setDisplayedEpisodes] = useState([])
+  const [searchQuery, setSearchQuery] = useState("")
   const isMounted = useRef(false)
   const ITEMS_PER_PAGE = 5
 
@@ -67,19 +69,32 @@ export default function EpisodeList() {
 
   useEffect(() => {
     if (filter === "All") {
-      setPagedEpisodeData(getPages(allEpisodeData, ITEMS_PER_PAGE))
+      const filtered = allEpisodeData.filter((ep) =>
+        searchQuery
+          ? ep.episodeTitle
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase().trim())
+          : true
+      )
+      setPagedEpisodeData(getPages(filtered, ITEMS_PER_PAGE))
       setPage(1)
     } else {
       const filtered = allEpisodeData.filter((ep) =>
-        ep.metadata.tags.some((tag) => tag.name === filter)
+        searchQuery
+          ? ep.episodeTitle
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase().trim()) &&
+            ep.metadata.tags.some((tag) => tag.name === filter)
+          : ep.metadata.tags.some((tag) => tag.name === filter)
       )
       setPagedEpisodeData(getPages(filtered, ITEMS_PER_PAGE))
       setPage(1)
     }
-  }, [filter, allEpisodeData])
+  }, [filter, allEpisodeData, searchQuery])
 
+  // Checks if component has rendered at least once and ensures pagedEpisodeData state variable has been populated
   useEffect(() => {
-    if (isMounted.current) {
+    if (isMounted.current && pagedEpisodeData.length > 0) {
       const items = pagedEpisodeData[page - 1].map((ep) => (
         <EpisodeCard
           key={ep.id}
@@ -97,6 +112,12 @@ export default function EpisodeList() {
       setDisplayedEpisodes(items)
     } else {
       isMounted.current = true
+      const noEpisodes = (
+        <Text mt="xl" size="xl" align="center">
+          Oops, no episodes found :(
+        </Text>
+      )
+      setDisplayedEpisodes(noEpisodes)
     }
   }, [page, pagedEpisodeData])
 
@@ -130,6 +151,8 @@ export default function EpisodeList() {
           style={{ maxWidth: 850 }}
           icon={<Search size={16} />}
           rightSection={rightSection}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.currentTarget.value)}
         />
       </motion.div>
 
@@ -154,34 +177,36 @@ export default function EpisodeList() {
 
       {displayedEpisodes}
 
-      <motion.div layout>
-        <Pagination
-          total={pagedEpisodeData.length}
-          withEdges
-          color="giBlue"
-          position="center"
-          mt="xl"
-          size="lg"
-          page={page}
-          onChange={setPage}
-          getItemAriaLabel={(page) => {
-            switch (page) {
-              case "dots":
-                return "Dots"
-              case "prev":
-                return "Previous page"
-              case "next":
-                return "Next page"
-              case "first":
-                return "First page"
-              case "last":
-                return "Last page"
-              default:
-                return `Page ${page}`
-            }
-          }}
-        />
-      </motion.div>
+      {displayedEpisodes.length > 0 && (
+        <motion.div layout>
+          <Pagination
+            total={pagedEpisodeData.length}
+            withEdges
+            color="giBlue"
+            position="center"
+            mt="xl"
+            size="lg"
+            page={page}
+            onChange={setPage}
+            getItemAriaLabel={(page) => {
+              switch (page) {
+                case "dots":
+                  return "Dots"
+                case "prev":
+                  return "Previous page"
+                case "next":
+                  return "Next page"
+                case "first":
+                  return "First page"
+                case "last":
+                  return "Last page"
+                default:
+                  return `Page ${page}`
+              }
+            }}
+          />
+        </motion.div>
+      )}
     </Container>
   )
 }
