@@ -43,6 +43,7 @@ export default function SearchProvider({ children }) {
         searchIcon={<Search />}
         searchPlaceholder="Search episode number or keywords"
         limit={5}
+        nothingFoundMessage="Oops, nothing found :("
       >
         {children}
       </SpotlightProvider>
