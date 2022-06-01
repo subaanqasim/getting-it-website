@@ -88,9 +88,6 @@ export default function LatestEpisodes({ reference }) {
           >
             All episodes
           </Button>
-          <Button variant="default" size="lg">
-            Load more
-          </Button>
         </Group>
       </Container>
     </motion.section>
