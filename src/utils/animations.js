@@ -169,3 +169,28 @@ export const animEpisodeTags = {
     transition: { ...transIn, delay: 0.15, duration: 0.8 },
   },
 }
+
+export const animFeatureContainer = {
+  initial: initFadeInUp,
+  whileInView: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      ease: easeOutQuart,
+      duration: 0.85,
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+export const animFeatureItem = {
+  initial: initFadeInUp,
+  whileInView: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      ease: easeOutQuart,
+      duration: 0.85,
+    },
+  },
+}

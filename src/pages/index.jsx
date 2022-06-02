@@ -3,7 +3,7 @@ import HeroSection from "../components/HeroSection/HeroSection"
 import LatestEpisodes from "../components/LatestEpisodes"
 import WebpageSeo from "../components/seo/WebpageSeo"
 import TheHosts from "../components/TheHosts/TheHosts"
-import WhatIsGettingIt from "../components/WhatIsGettingIt"
+import WhatIsGettingIt from "../components/WhatIsGettingIt/WhatIsGettingIt"
 
 export default function Home() {
   const latestEpSection = useRef(null)
@@ -27,8 +27,8 @@ export default function Home() {
       <HeroSection handleScroll={() => handleScroll(latestEpSection)} />
       <main>
         <LatestEpisodes reference={latestEpSection} />
-        <TheHosts />
         <WhatIsGettingIt />
+        <TheHosts />
       </main>
     </>
   )
