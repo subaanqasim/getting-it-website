@@ -90,7 +90,7 @@ export default function HeroSection({ handleScroll }) {
               <Button
                 size="xl"
                 variant="outline"
-                className={cx(classes.control, classes.githubControl)}
+                className={cx(classes.control, classes.platformControl)}
                 onClick={() => setModalOpen(true)}
               >
                 Choose Platform

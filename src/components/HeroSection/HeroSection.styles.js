@@ -127,14 +127,31 @@ export default createStyles((theme) => ({
     },
   },
 
-  githubControl: {
+  platformControl: {
     borderWidth: 2,
-    borderColor: theme.colors.gray[1],
+    borderColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.gray[1]
+        : theme.colors.gray[7],
+
     backgroundColor: "transparent",
-    color: theme.colors.gray[1],
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.gray[1]
+        : theme.colors.gray[7],
 
     "&:hover": {
-      backgroundColor: `${theme.colors.dark[4]} !important`,
+      backgroundColor: `${
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[4]
+          : theme.colors.gray[1]
+      } !important`,
+
+      color: `${
+        theme.colorScheme === "dark"
+          ? theme.colors.gray[0]
+          : theme.colors.dark[9]
+      } !important`,
     },
   },
 
