@@ -1,17 +1,15 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
-import { Button, Container, Modal } from "@mantine/core"
-import { useMediaQuery } from "@mantine/hooks"
+import { Container } from "@mantine/core"
 import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
 import EpisodePageHeader from "../components/EpisodePage/EpisodePageHeader/EpisodePageHeader"
 import MdxProvider from "../components/EpisodePage/Mdx/MdxProvider"
-import PodcastLinksGrid from "../components/PodcastLinksGrid/PodcastLinksGrid"
 import EpisodeSiblings from "../components/EpisodePage/EpisodeSiblings/EpisodeSiblings"
 import PodcastSeo from "../components/seo/PodcastSeo"
+import PodcastLinksModal from "../components/PodcastLinksGrid/PodcastLinksModal"
 
 export default function EpisodePageTemplate({ data }) {
   const { current, next, previous } = data
-  const smallScreen = useMediaQuery("(max-width: 576px)")
   const [modalOpen, setModalOpen] = useState(false)
 
   return (
@@ -20,32 +18,10 @@ export default function EpisodePageTemplate({ data }) {
       <EpisodePageHeader epData={current} />
       <main>
         <Container size="sm">
-          <Modal
-            centered
-            padding="md"
-            opened={modalOpen}
-            overflow="inside"
-            onClose={() => setModalOpen(false)}
-            title="Choose wisely..."
-          >
-            <PodcastLinksGrid />
-          </Modal>
-
-          {!smallScreen && <PodcastLinksGrid />}
-
-          {smallScreen && (
-            <Button
-              fullWidth
-              size="md"
-              mb="xl"
-              onClick={() => setModalOpen(true)}
-              variant="gradient"
-              gradient={{ from: "blue", to: "giBlue", deg: 60 }}
-              color="giBlue"
-            >
-              Choose podcast platform
-            </Button>
-          )}
+          <PodcastLinksModal
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+          />
 
           <EpisodeSiblings next={next} previous={previous} />
 
