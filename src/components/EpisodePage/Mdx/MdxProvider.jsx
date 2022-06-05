@@ -5,15 +5,19 @@ import MdxTitle from "./MdxTitle/MdxTitle"
 import GatsbyLink from "./GatsbyLink/GatsbyLink"
 import MdxBlockquote from "./MdxBlockquote"
 import ShowNotesBoiler from "../../../copy/showNotes.mdx"
+import PodcastLinksModal from "../../PodcastLinksGrid/PodcastLinksModal"
+import HostCard from "../../TheHosts/HostCard/HostCard"
 
 export const components = {
   ShowNotesBoiler: () => <ShowNotesBoiler />,
-  h1: (props) => <MdxTitle order={1} {...props} />,
-  h2: (props) => <MdxTitle order={2} {...props} />,
-  h3: (props) => <MdxTitle order={3} {...props} />,
-  h4: (props) => <MdxTitle order={4} {...props} />,
-  h5: (props) => <MdxTitle order={5} {...props} />,
-  h6: (props) => <MdxTitle order={6} {...props} />,
+  PodcastLinksModal: () => <PodcastLinksModal />,
+  HostCard: (props) => <HostCard {...props} />,
+  h1: (props) => <MdxTitle order={1} mt="1.25em" {...props} />,
+  h2: (props) => <MdxTitle order={2} mt="1.25em" {...props} />,
+  h3: (props) => <MdxTitle order={3} mt="1.25em" {...props} />,
+  h4: (props) => <MdxTitle order={4} mt="1.25em" {...props} />,
+  h5: (props) => <MdxTitle order={5} mt="1.25em" {...props} />,
+  h6: (props) => <MdxTitle order={6} mt="1.25em" {...props} />,
   p: (props) => <p {...props} style={{ lineHeight: 1.7 }} />,
   hr: () => <Divider size="sm" my="lg" />,
   blockquote: ({ children }) => <MdxBlockquote>{children}</MdxBlockquote>,
