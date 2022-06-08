@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { ScrollerMotion } from "scroller-motion"
 import { AnimatePresence, motion } from "framer-motion"
+import { NotificationsProvider } from "@mantine/notifications"
 import Navbar from "./Navbar/Navbar"
 import Footer from "./Footer/Footer"
 import Loader from "./Loader"
-
 export default function Layout({ children }) {
   const [loading, setLoading] = useState(true)
 
@@ -16,16 +16,17 @@ export default function Layout({ children }) {
             <Loader setLoading={setLoading} />
           </motion.div>
         )}
-
-        {!loading && (
-          <>
-            <Navbar key="navbar" />
-            {/* <ScrollerMotion> */}
-            {children}
-            <Footer fixed={true} key="footer" />
-            {/* </ScrollerMotion> */}
-          </>
-        )}
+        <NotificationsProvider position="bottom-center">
+          {!loading && (
+            <>
+              <Navbar key="navbar" />
+              {/* <ScrollerMotion> */}
+              {children}
+              <Footer fixed={true} key="footer" />
+              {/* </ScrollerMotion> */}
+            </>
+          )}
+        </NotificationsProvider>
       </AnimatePresence>
     </>
   )

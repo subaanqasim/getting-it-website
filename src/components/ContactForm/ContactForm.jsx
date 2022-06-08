@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import {
   Paper,
   Text,
@@ -11,9 +11,12 @@ import {
 import useStyles from "./ContactForm.styles"
 import { useFormik } from "formik"
 import * as Yup from "yup"
+import { showNotification, updateNotification } from "@mantine/notifications"
+import { Check, CircleX } from "tabler-icons-react"
 
 export default function ContactForm() {
   const { classes, theme } = useStyles()
+  const [isSending, setIsSending] = useState(false)
 
   const formik = useFormik({
     initialValues: {
@@ -30,8 +33,57 @@ export default function ContactForm() {
         "Oops, looks like you forgot your message"
       ),
     }),
-    onSubmit: (values) => {
-      console.log(values)
+    onSubmit: async (data) => {
+      setIsSending(true)
+      showNotification({
+        id: "form-submission",
+        disallowClose: true,
+        autoClose: false,
+        loading: true,
+        color: "orange",
+        title: "Message sending...",
+        message: "Some magic is occurring 😶",
+      })
+
+      try {
+        const res = await fetch("/api/contactForm", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+
+        if (res.ok) {
+          formik.resetForm()
+          setIsSending(false)
+          updateNotification({
+            id: "form-submission",
+            disallowClose: false,
+            autoClose: 6000,
+            loading: false,
+            title: "Message sent! 🥳",
+            message:
+              "Your message has been sent successfully and we'll get back to you soon!",
+            color: "green",
+            icon: <Check />,
+          })
+        }
+      } catch (error) {
+        setIsSending(false)
+        console.error(error)
+
+        updateNotification({
+          id: "form-submission",
+          disallowClose: false,
+          autoClose: false,
+          loading: false,
+          title: "Unable to send message 😥",
+          message: `An error has occurred. Please try again later, or get in touch via Instagram/Twitter if this problem persists.`,
+          color: "red",
+          icon: <CircleX />,
+        })
+      }
     },
   })
 
@@ -105,6 +157,7 @@ export default function ContactForm() {
               className={classes.control}
               color={theme.colorScheme === "dark" ? "gray" : "dark"}
               variant="outline"
+              loading={isSending}
             >
               Send message
             </Button>
