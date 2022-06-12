@@ -1,5 +1,5 @@
 // EASING
-const easeOutQuart = [0.6, 0.01, -0.05, 0.95]
+export const easeOutQuart = [0.6, 0.01, -0.05, 0.95]
 export const transIn = {
   ease: easeOutQuart,
   duration: 1.6,

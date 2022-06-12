@@ -12,7 +12,9 @@ exports.wrapRootElement = ({ element }) => {
   return (
     <ThemeProvider>
       <SearchProvider>
-        <MotionConfig reducedMotion="user">{element}</MotionConfig>
+        <MotionConfig reducedMotion="user">
+          <CookiesProvider>{element}</CookiesProvider>
+        </MotionConfig>
       </SearchProvider>
     </ThemeProvider>
   )

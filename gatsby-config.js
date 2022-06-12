@@ -25,16 +25,14 @@ module.exports = {
 
   plugins: [
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: `gatsby-plugin-gdpr-cookies`,
       options: {
-        trackingIds: [process.env.GA4_MEASUREMENT_ID],
-        gtagConfig: {
-          anonymize_ip: true,
-          cookie_expires: 0,
+        googleAnalytics: {
+          trackingId: process.env.GA4_MEASUREMENT_ID,
+          cookieName: `giAnalytics`,
+          anonymize: true,
         },
-        pluginConfig: {
-          head: true,
-        },
+        environments: [`production`],
       },
     },
     `gatsby-plugin-mantine`,
