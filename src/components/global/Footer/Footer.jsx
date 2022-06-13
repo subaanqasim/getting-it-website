@@ -83,9 +83,9 @@ export default function Footer() {
   ))
 
   const groups = footerData.map((group) => {
-    const links = group.links.map((link, index) => (
+    const links = group.links.map((link) => (
       <Text
-        key={index}
+        key={link.link}
         className={classes.link}
         component={Link}
         to={link.link}

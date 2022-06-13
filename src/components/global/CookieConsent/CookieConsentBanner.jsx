@@ -3,7 +3,11 @@ import { Button, Paper, Text, Group, useMantineTheme } from "@mantine/core"
 import { initializeAndTrack } from "gatsby-plugin-gdpr-cookies"
 import { useCookies } from "react-cookie"
 
-export default function CookieConsent({ setCookiePrefs, location }) {
+export default function CookieConsent({
+  setCookiePrefs,
+  location,
+  openCookieModal,
+}) {
   const theme = useMantineTheme()
   const [cookies, setCookie] = useCookies()
 
@@ -14,10 +18,6 @@ export default function CookieConsent({ setCookiePrefs, location }) {
       expires: new Date(2147483647000),
     })
     setCookie("giAnalytics", true, {
-      path: "/",
-      expires: new Date(2147483647000),
-    })
-    setCookie("giMarketing", true, {
       path: "/",
       expires: new Date(2147483647000),
     })
@@ -56,9 +56,12 @@ export default function CookieConsent({ setCookiePrefs, location }) {
         <Button
           variant="default"
           size="xs"
-          onClick={() => setCookiePrefs(true)}
+          onClick={() => {
+            setCookiePrefs(true)
+            openCookieModal(true)
+          }}
         >
-          Cookies preferences
+          Cookie preferences
         </Button>
         <Button
           variant={theme.colorScheme === "dark" ? "outline" : "filled"}

@@ -6,18 +6,32 @@ import { Affix } from "@mantine/core"
 import Navbar from "./Navbar/Navbar"
 import Footer from "./Footer/Footer"
 import Loader from "./Loader"
-import CookieConsent from "./CookieConsent/CookieConsentBanner"
+import CookieConsentBanner from "./CookieConsent/CookieConsentBanner"
 import { useCookies } from "react-cookie"
 import { easeOutQuart } from "../../utils/animations"
+import CookiePrefsModal from "./CookieConsent/CookiePrefsModal/CookiePrefsModal"
 
 export default function Layout({ children, location }) {
   const [loading, setLoading] = useState(true)
   const [cookiePrefs, setCookiePrefs] = useState(true)
-  const [cookies] = useCookies()
+  const [cookieModalOpen, setCookieModalOpen] = useState(false)
+  const [cookies, setCookie] = useCookies()
 
   const hasUserSetCookiePrefs = () => {
     if (cookies.giCookiePrefs !== "true") {
       setCookiePrefs(false)
+      setCookie("giCookiePrefs", false, {
+        path: "/",
+        expires: new Date(2147483647000),
+      })
+      setCookie("giAnalytics", false, {
+        path: "/",
+        expires: new Date(2147483647000),
+      })
+      setCookie("giPersonalisation", false, {
+        path: "/",
+        expires: new Date(2147483647000),
+      })
     } else {
       setCookiePrefs(true)
     }
@@ -58,13 +72,19 @@ export default function Layout({ children, location }) {
                       },
                     }}
                   >
-                    <CookieConsent
+                    <CookieConsentBanner
                       setCookiePrefs={setCookiePrefs}
                       location={location}
+                      openCookieModal={setCookieModalOpen}
                     />
                   </motion.div>
                 </Affix>
               )}
+              <CookiePrefsModal
+                open={cookieModalOpen}
+                setOpen={setCookieModalOpen}
+                location={location}
+              />
 
               {/* </ScrollerMotion> */}
             </>
