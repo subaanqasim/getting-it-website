@@ -1,5 +1,5 @@
-const { MotionConfig } = require("framer-motion")
 const React = require("react")
+const { MotionConfig } = require("framer-motion")
 const { CookiesProvider } = require("react-cookie")
 const SearchProvider = require("./src/components/global/SearchProvider").default
 const Layout = require("./src/components/global/Layout").default

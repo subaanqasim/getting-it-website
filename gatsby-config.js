@@ -108,5 +108,79 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-advanced-sitemap`,
+      options: {
+        query: `
+          {
+            allContentfulPodcasts {
+              edges {
+                node {
+                  id
+                  slug
+                  updatedAt
+                  thumbnail {
+                    url
+                  }
+                }
+              }
+            }
+            allSitePage {
+              edges {
+                node {
+                  id
+                  path
+                  pageContext
+                }
+              }
+            }
+          }`,
+
+        mapping: {
+          allContentfulPodcasts: {
+            sitemap: `episodes`,
+            serializer: (edges) => {
+              return edges.map(({ node }) => {
+                const mappedNode = {
+                  node: {
+                    id: node.id,
+                    slug: `/episodes/${node.slug}`,
+                    updated_at: node.updatedAt,
+                    feature_image: node.thumbnail.url,
+                  },
+                }
+                return mappedNode
+              })
+            },
+          },
+
+          allSitePage: {
+            sitemap: `pages`,
+            serializer: (edges) => {
+              return edges.reduce((acc, { node }) => {
+                if (node.pageContext.id === undefined) {
+                  const mappedNode = {
+                    node: {
+                      id: node.id,
+                      slug: node.path,
+                    },
+                  }
+                  acc.push(mappedNode)
+                  return acc
+                } else return acc
+              }, [])
+            },
+          },
+        },
+        exclude: [
+          `/dev-404-page`,
+          `/404`,
+          `/404.html`,
+          `/offline-plugin-app-shell-fallback`,
+        ],
+        createLinkInHead: true,
+        addUncaughtPages: true,
+      },
+    },
   ],
 }
