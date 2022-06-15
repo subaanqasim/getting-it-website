@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Cookie } from "tabler-icons-react"
 import CookiePrefsModal from "../components/global/CookieConsent/CookiePrefsModal/CookiePrefsModal"
 import PageHeader from "../components/PageHeader"
-import WebpageSeo from "../components/seo/WebpageSeo"
+import WebpageSeo from "../components/Seo/WebpageSeo"
 
 export default function CookiePolicy({ location }) {
   const [cookieModalOpen, setCookieModalOpen] = useState(false)

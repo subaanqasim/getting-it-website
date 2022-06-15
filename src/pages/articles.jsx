@@ -3,7 +3,7 @@ import { Container, Text } from "@mantine/core"
 import { News } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
 import LatestEpisodes from "../components/LatestEpisodes"
-import WebpageSeo from "../components/seo/WebpageSeo"
+import WebpageSeo from "../components/Seo/WebpageSeo"
 
 export default function Articles() {
   return (
@@ -17,6 +17,7 @@ export default function Articles() {
         title="Articles"
         subtitle="Written ramblings rather than verbal ones"
         subtitleIcon={<News size={16} />}
+        spline={process.env.ARTICLES_3D}
       />
       <main>
         <Container size="lg">

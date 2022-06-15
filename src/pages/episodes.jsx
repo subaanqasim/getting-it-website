@@ -2,7 +2,7 @@ import React from "react"
 import { Microphone } from "tabler-icons-react"
 import EpisodeList from "../components/EpisodeList"
 import PageHeader from "../components/PageHeader"
-import WebpageSeo from "../components/seo/WebpageSeo"
+import WebpageSeo from "../components/Seo/WebpageSeo"
 
 export default function Episodes() {
   return (
@@ -16,6 +16,7 @@ export default function Episodes() {
         title="Episodes"
         subtitle="All of our episodes in one place"
         subtitleIcon={<Microphone size={16} />}
+        spline={process.env.EPISODES_3D}
       />
       <main>
         <EpisodeList />

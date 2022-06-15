@@ -9,7 +9,7 @@ import {
   createStyles,
 } from "@mantine/core"
 import { Link } from "gatsby"
-import WebpageSeo from "../components/seo/WebpageSeo"
+import WebpageSeo from "../components/Seo/WebpageSeo"
 
 const useStyles = createStyles((theme) => ({
   root: {

@@ -1,7 +1,7 @@
 import React from "react"
 import { BrandInstagram, BrandTwitter, Social } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
-import WebpageSeo from "../components/seo/WebpageSeo"
+import WebpageSeo from "../components/Seo/WebpageSeo"
 import ContactForm from "../components/ContactForm/ContactForm"
 import { Container, SimpleGrid, Text, useMantineTheme } from "@mantine/core"
 import { SocialMediaCard } from "../components/SocialMediaCard"
@@ -19,6 +19,7 @@ export default function Connect() {
         title="Connect With Us"
         subtitle="Get in touch"
         subtitleIcon={<Social size={16} />}
+        spline="https://prod.spline.design/jqmTWkXJgYFINilh/scene.splinecode"
       />
       <main>
         <Container size="lg" mb="xl">

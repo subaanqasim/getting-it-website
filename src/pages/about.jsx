@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { YinYang } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
-import WebpageSeo from "../components/seo/WebpageSeo"
+import WebpageSeo from "../components/Seo/WebpageSeo"
 import Ethos from "../copy/ethos.mdx"
 import MdxProvider from "../components/EpisodePage/Mdx/MdxProvider"
 import { Container } from "@mantine/core"
@@ -24,6 +24,7 @@ export default function About({ data }) {
         title="Our Ethos"
         subtitle="The who, what, where and why"
         subtitleIcon={<YinYang size={16} />}
+        spline={process.env.ABOUT_3D}
       />
       <main>
         <>

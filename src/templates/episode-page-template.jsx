@@ -5,7 +5,7 @@ import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
 import EpisodePageHeader from "../components/EpisodePage/EpisodePageHeader/EpisodePageHeader"
 import MdxProvider from "../components/EpisodePage/Mdx/MdxProvider"
 import EpisodeSiblings from "../components/EpisodePage/EpisodeSiblings/EpisodeSiblings"
-import PodcastSeo from "../components/seo/PodcastSeo"
+import PodcastSeo from "../components/Seo/PodcastSeo"
 import PodcastLinksModal from "../components/PodcastLinksGrid/PodcastLinksModal"
 
 export default function EpisodePageTemplate({ data }) {

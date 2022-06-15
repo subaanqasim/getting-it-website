@@ -1,7 +1,7 @@
 import React from "react"
 import { ShieldLock } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
-import WebpageSeo from "../components/seo/WebpageSeo"
+import WebpageSeo from "../components/Seo/WebpageSeo"
 
 export default function PrivacyPolicy() {
   return (

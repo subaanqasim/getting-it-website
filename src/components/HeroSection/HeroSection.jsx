@@ -32,7 +32,7 @@ export default function HeroSection({ handleScroll }) {
         <Container size="xl" className={classes.wrapper}>
           {!isSSR && (
             <React.Suspense fallback={<div />}>
-              {/* <HeroImage className={classes.heroImg} /> */}
+              <HeroImage />
             </React.Suspense>
           )}
 

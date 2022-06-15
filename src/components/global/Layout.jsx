@@ -12,7 +12,7 @@ import { easeOutQuart } from "../../utils/animations"
 import CookiePrefsModal from "./CookieConsent/CookiePrefsModal/CookiePrefsModal"
 
 export default function Layout({ children, location }) {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false) // set initial state to true to implement loader
   const [cookiePrefs, setCookiePrefs] = useState(true)
   const [cookieModalOpen, setCookieModalOpen] = useState(false)
   const [cookies, setCookie] = useCookies()

@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import HeroSection from "../components/HeroSection/HeroSection"
 import LatestEpisodes from "../components/LatestEpisodes"
-import WebpageSeo from "../components/seo/WebpageSeo"
+import WebpageSeo from "../components/Seo/WebpageSeo"
 import TheHosts from "../components/TheHosts/TheHosts"
 import WhatIsGettingIt from "../components/WhatIsGettingIt/WhatIsGettingIt"
 
