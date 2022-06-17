@@ -27,6 +27,15 @@ export default function EpisodePageTemplate({ data }) {
 
           <MdxProvider>
             <MDXRenderer>{current.notes.childMdx.body}</MDXRenderer>
+            {current.transcript1 && (
+              <MDXRenderer>{current.transcript1.childMdx.body}</MDXRenderer>
+            )}
+            {current.transcript2 && (
+              <MDXRenderer>{current.transcript2.childMdx.body}</MDXRenderer>
+            )}
+            {current.transcript3 && (
+              <MDXRenderer>{current.transcript3.childMdx.body}</MDXRenderer>
+            )}
           </MdxProvider>
         </Container>
       </main>
@@ -70,6 +79,21 @@ export const query = graphql`
             value
             depth
           }
+        }
+      }
+      transcript1 {
+        childMdx {
+          body
+        }
+      }
+      transcript2 {
+        childMdx {
+          body
+        }
+      }
+      transcript3 {
+        childMdx {
+          body
         }
       }
     }
