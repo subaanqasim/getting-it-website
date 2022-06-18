@@ -44,6 +44,12 @@ export default function SearchProvider({ children }) {
         searchPlaceholder="Search episode number or keywords"
         limit={5}
         nothingFoundMessage="Oops, nothing found :("
+        styles={{
+          root: {
+            paddingLeft: 16,
+            paddingRight: 16,
+          },
+        }}
       >
         {children}
       </SpotlightProvider>
