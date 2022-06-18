@@ -19,6 +19,7 @@ import { Search } from "tabler-icons-react"
 import { Link } from "gatsby"
 import useStyles, { HEADER_HEIGHT } from "./Navbar.styles"
 import { useSpotlight } from "@mantine/spotlight"
+import ThemeToggle from "./ThemeToggle/ThemeToggle"
 
 const links = [
   {
@@ -110,12 +111,19 @@ export default function Navbar() {
             {items}
           </motion.div>
           <motion.div
-            className={classes.searchIcon}
+            className={classes.iconGroup}
             variants={animNavSearch(mobile)}
-            onClick={spotlight.openSpotlight}
-            whileHover={{ scale: 1.15 }}
           >
-            <Search />
+            <motion.div whileHover={{ scale: 1.15 }} className={classes.icon}>
+              <ThemeToggle />
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.15 }}
+              className={classes.icon}
+              onClick={spotlight.openSpotlight}
+            >
+              <Search style={{ strokeWidth: 1.5 }} />
+            </motion.div>
           </motion.div>
 
           <motion.div

@@ -110,14 +110,20 @@ export default createStyles((theme) => ({
     },
   },
 
-  searchIcon: {
+  iconGroup: {
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
+    gap: 12,
 
     [theme.fn.smallerThan("sm")]: {
       marginLeft: "auto",
       marginRight: "16px",
     },
+  },
+
+  icon: {
+    display: "flex",
+    alignItems: "center",
   },
 }))
