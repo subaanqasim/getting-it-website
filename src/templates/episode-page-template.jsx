@@ -7,36 +7,68 @@ import MdxProvider from "../components/EpisodePage/Mdx/MdxProvider"
 import EpisodeSiblings from "../components/EpisodePage/EpisodeSiblings/EpisodeSiblings"
 import PodcastSeo from "../components/Seo/PodcastSeo"
 import PodcastLinksModal from "../components/PodcastLinksGrid/PodcastLinksModal"
+import TableOfContents from "../components/EpisodePage/TableOfContents/TableOfContents"
+import { useMediaQuery } from "@mantine/hooks"
 
-export default function EpisodePageTemplate({ data }) {
+export default function EpisodePageTemplate({ data, location }) {
   const { current, next, previous } = data
   const [modalOpen, setModalOpen] = useState(false)
+  const isMobile = useMediaQuery("(max-width: 768px)")
 
   return (
     <>
       <PodcastSeo epData={current} />
       <EpisodePageHeader epData={current} />
       <main>
-        <Container size="sm">
-          <PodcastLinksModal
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-          />
+        <Container
+          size="xl"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            position: "relative",
+          }}
+        >
+          <div
+            style={{
+              maxWidth: "650px",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            <PodcastLinksModal
+              modalOpen={modalOpen}
+              setModalOpen={setModalOpen}
+            />
 
-          <EpisodeSiblings next={next} previous={previous} />
+            <EpisodeSiblings next={next} previous={previous} />
 
-          <MdxProvider>
-            <MDXRenderer>{current.notes.childMdx.body}</MDXRenderer>
-            {current.transcript1 && (
-              <MDXRenderer>{current.transcript1.childMdx.body}</MDXRenderer>
-            )}
-            {current.transcript2 && (
-              <MDXRenderer>{current.transcript2.childMdx.body}</MDXRenderer>
-            )}
-            {current.transcript3 && (
-              <MDXRenderer>{current.transcript3.childMdx.body}</MDXRenderer>
-            )}
-          </MdxProvider>
+            <MdxProvider>
+              <MDXRenderer>{current.notes.childMdx.body}</MDXRenderer>
+              {current.transcript1 && (
+                <MDXRenderer>{current.transcript1.childMdx.body}</MDXRenderer>
+              )}
+              {current.transcript2 && (
+                <MDXRenderer>{current.transcript2.childMdx.body}</MDXRenderer>
+              )}
+              {current.transcript3 && (
+                <MDXRenderer>{current.transcript3.childMdx.body}</MDXRenderer>
+              )}
+            </MdxProvider>
+          </div>
+
+          {!isMobile && (
+            <div
+              style={{
+                flex: `0 0 300px`,
+              }}
+            >
+              <TableOfContents
+                location={location}
+                notesHeadings={current.notes.childMdx.headings}
+                transcript={current.transcript1 ? true : false}
+              />
+            </div>
+          )}
         </Container>
       </main>
     </>
