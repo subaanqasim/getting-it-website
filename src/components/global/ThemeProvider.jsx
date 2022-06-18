@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core"
-import { useHotkeys } from "@mantine/hooks"
+import { useHotkeys, useLocalStorage } from "@mantine/hooks"
 import "@fontsource/inter/400.css"
 import "@fontsource/inter/600.css"
 import "@fontsource/inter/700.css"
@@ -10,7 +10,12 @@ import "@fontsource/montserrat/700.css"
 import GlobalTheme from "./GlobalTheme"
 
 export default function ThemeProvider({ children }) {
-  const [colorScheme, setColorScheme] = useState("dark")
+  const [colorScheme, setColorScheme] = useLocalStorage({
+    key: "giTheme",
+    defaultValue: "dark",
+    // getInitialValueInEffect: true,
+  })
+
   const toggleColorScheme = (value) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"))
 
