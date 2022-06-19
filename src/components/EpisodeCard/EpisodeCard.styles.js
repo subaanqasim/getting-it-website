@@ -16,7 +16,7 @@ export default createStyles((theme) => ({
       color: theme.colors.giOrange[4],
     },
 
-    [theme.fn.smallerThan("xs")]: {
+    [theme.fn.smallerThan("md")]: {
       fontSize: "20px",
     },
   },
@@ -29,7 +29,7 @@ export default createStyles((theme) => ({
   group: {
     flexWrap: "nowrap",
 
-    [theme.fn.smallerThan("xs")]: {
+    [theme.fn.smallerThan("md")]: {
       flexWrap: "wrap",
     },
   },
@@ -37,8 +37,9 @@ export default createStyles((theme) => ({
   img: {
     maxWidth: "35%",
     alignSelf: "stretch",
+    maxHeight: "450px",
 
-    [theme.fn.smallerThan("xs")]: {
+    [theme.fn.smallerThan("md")]: {
       maxWidth: "100%",
       maxHeight: "350px",
     },

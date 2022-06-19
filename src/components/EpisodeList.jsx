@@ -7,6 +7,7 @@ import {
   Pagination,
   TextInput,
   Text,
+  SimpleGrid,
 } from "@mantine/core"
 import { useStaticQuery, graphql } from "gatsby"
 import EpisodeCard from "./EpisodeCard/EpisodeCard"
@@ -54,7 +55,7 @@ export default function EpisodeList() {
   const [displayedEpisodes, setDisplayedEpisodes] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
   const isMounted = useRef(false)
-  const ITEMS_PER_PAGE = 5
+  const ITEMS_PER_PAGE = 6
 
   const {
     allContentfulPodcasts: { nodes: allEpisodeData },
@@ -189,7 +190,24 @@ export default function EpisodeList() {
         </Chips>
       </motion.div>
 
-      {displayedEpisodes}
+      <SimpleGrid
+        cols={1}
+        spacing="lg"
+        breakpoints={[
+          {
+            maxWidth: "md",
+            cols: 2,
+            spacing: "md",
+          },
+          {
+            maxWidth: "sm",
+            cols: 1,
+            spacing: "xs",
+          },
+        ]}
+      >
+        {displayedEpisodes}
+      </SimpleGrid>
 
       {displayedEpisodes.length > 0 && (
         <motion.div layout>
