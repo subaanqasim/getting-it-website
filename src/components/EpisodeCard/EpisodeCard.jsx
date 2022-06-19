@@ -1,5 +1,5 @@
 import React from "react"
-import { Card, Text, Group, Title } from "@mantine/core"
+import { Card, Text, Group, Title, useMantineColorScheme } from "@mantine/core"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import { motion } from "framer-motion"
@@ -20,6 +20,7 @@ export default function EpisodeCard({
   homePage = false,
 }) {
   const { classes } = useStyles()
+  const { colorScheme } = useMantineColorScheme()
 
   return (
     <motion.article
@@ -64,16 +65,16 @@ export default function EpisodeCard({
               {excerpt}
             </Text>
 
-            {/* <iframe
-            title={title}
-            style={{ borderRadius: "12px" }}
-            src={`${embedURL}?utm_source=generator&theme=0`}
-            width="100%"
-            height="152px"
-            frameBorder="0"
-            allowFullScreen=""
-            allow="encrypted-media *; fullscreen; picture-in-picture"
-          ></iframe> */}
+            <iframe
+              title={title}
+              style={{ borderRadius: "12px" }}
+              src={`${embedURL}?${colorScheme === "dark" ? "theme=0" : ""}`}
+              width="100%"
+              height="152px"
+              frameBorder="0"
+              allowFullScreen=""
+              allow="encrypted-media *; fullscreen; picture-in-picture"
+            ></iframe>
           </div>
         </Group>
       </Card>
