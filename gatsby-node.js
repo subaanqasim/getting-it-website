@@ -1,7 +1,7 @@
 const path = require(`path`)
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
   const episodePageTemplate = path.resolve(
     `./src/templates/episode-page-template.jsx`
   )
@@ -35,5 +35,11 @@ exports.createPages = async ({ graphql, actions }) => {
         prevEpId: ep.previous === null ? ep.previous : ep.previous.id,
       },
     })
+  })
+
+  createRedirect({
+    fromPath: `/podcast/*`,
+    toPath: `/episodes/*`,
+    isPermanent: true,
   })
 }
