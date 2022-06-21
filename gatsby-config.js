@@ -36,6 +36,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-mantine`,
+    `gatsby-plugin-gatsby-cloud`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
