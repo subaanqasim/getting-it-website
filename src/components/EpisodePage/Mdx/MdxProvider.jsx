@@ -10,7 +10,7 @@ import HostCard from "../../TheHosts/HostCard/HostCard"
 
 export const components = {
   ShowNotesBoiler: () => <ShowNotesBoiler />,
-  PodcastLinksModal: () => <PodcastLinksModal />,
+  PodcastLinksModal: (props) => <PodcastLinksModal {...props} />,
   HostCard: (props) => <HostCard {...props} />,
   h1: (props) => <MdxTitle order={1} mt="1.25em" {...props} />,
   h2: (props) => <MdxTitle order={2} mt="1.25em" {...props} />,
