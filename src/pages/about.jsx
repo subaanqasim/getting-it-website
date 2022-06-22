@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
 import { YinYang } from "tabler-icons-react"
 import PageHeader from "../components/PageHeader"
@@ -11,6 +11,7 @@ import LatestEpisodes from "../components/LatestEpisodes"
 export default function About({ data }) {
   const subaanData = data.subaanData.nodes
   const danData = data.danData.nodes
+  const [modalOpen, setModalOpen] = useState(false)
 
   return (
     <>
@@ -30,7 +31,12 @@ export default function About({ data }) {
         <>
           <Container size="sm">
             <MdxProvider>
-              <Ethos danData={danData} subaanData={subaanData} />
+              <Ethos
+                danData={danData}
+                subaanData={subaanData}
+                modalOpen={modalOpen}
+                setModalOpen={setModalOpen}
+              />
             </MdxProvider>
           </Container>
           <LatestEpisodes />
