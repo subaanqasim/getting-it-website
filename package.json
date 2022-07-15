@@ -26,7 +26,7 @@
     "@splinetool/react-spline": "^2.2.1",
     "@splinetool/runtime": "^0.9.52",
     "formik": "^2.2.9",
-    "framer-motion": "^6.3.4",
+    "framer-motion": "^6.5.1",
     "gatsby": "^4.13.1",
     "gatsby-plugin-advanced-sitemap": "^2.1.0",
     "gatsby-plugin-gatsby-cloud": "^4.17.0",
