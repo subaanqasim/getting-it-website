@@ -3,7 +3,7 @@ const path = require(`path`)
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions
   const episodePageTemplate = path.resolve(
-    `./src/templates/episode-page-template.jsx`
+    `./src/templates/episode-page-template.jsx`,
   )
 
   const { data } = await graphql(`
@@ -42,4 +42,19 @@ exports.createPages = async ({ graphql, actions }) => {
     toPath: `/episodes/*`,
     isPermanent: true,
   })
+}
+
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  if (stage === "build-html") {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /@splinetool/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    })
+  }
 }
