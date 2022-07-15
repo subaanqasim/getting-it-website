@@ -1,12 +1,7 @@
 import React from "react"
 import { Header, Container, Burger, Paper, Transition } from "@mantine/core"
 import { useBooleanToggle, useMediaQuery } from "@mantine/hooks"
-import {
-  motion,
-  useSpring,
-  useTransform,
-  useViewportScroll,
-} from "framer-motion"
+import { motion, useSpring, useTransform, useScroll } from "framer-motion"
 import {
   animNavbar,
   animNavLinksDiv,
@@ -48,7 +43,7 @@ export default function Navbar() {
   const [opened, toggleOpened] = useBooleanToggle(false)
   const { classes } = useStyles()
   const spotlight = useSpotlight()
-  const { scrollYProgress } = useViewportScroll()
+  const { scrollYProgress } = useScroll()
   const yRange = useTransform(scrollYProgress, [0, 0.9], [0, 1])
   const pathLength = useSpring(yRange, { stiffness: 400, damping: 90 })
   const mobile = useMediaQuery("(max-width: 768px)")
