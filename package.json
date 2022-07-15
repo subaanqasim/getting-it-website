@@ -16,7 +16,7 @@
   "dependencies": {
     "@fontsource/inter": "^4.5.10",
     "@fontsource/montserrat": "^4.5.10",
-    "@mantine/core": "^4.2.7",
+    "@mantine/core": "^4.2.12",
     "@mantine/hooks": "^4.2.7",
     "@mantine/notifications": "^4.2.8",
     "@mantine/spotlight": "^4.2.7",
