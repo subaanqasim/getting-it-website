@@ -11,12 +11,11 @@ import {
   animHeroArrow,
 } from "../../utils/animations"
 
-const HeroImage = React.lazy(() => import("./Hero3DImage"))
+// const HeroImage = React.lazy(() => import("./Hero3DImage"))
 
 export default function HeroSection({ handleScroll }) {
   const { classes, cx } = useStyles()
   const [modalOpen, setModalOpen] = useState(false)
-  const isSSR = typeof window === "undefined"
   const { scrollYProgress } = useViewportScroll()
   const yLinkedOpacity = useTransform(scrollYProgress, [0, 0.25], [0.8, 0])
   const yLinkedPosition = useTransform(scrollYProgress, [0, 0.25], [0, 60])
@@ -30,11 +29,9 @@ export default function HeroSection({ handleScroll }) {
         }}
       >
         <Container size="xl" className={classes.wrapper}>
-          {!isSSR && (
-            <React.Suspense fallback={<div></div>}>
-              <HeroImage />
-            </React.Suspense>
-          )}
+          {/* <React.Suspense fallback={null}>
+            <HeroImage />
+          </React.Suspense> */}
 
           <motion.div
             className={classes.inner}
