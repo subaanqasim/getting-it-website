@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { ScrollerMotion } from "scroller-motion"
 import { AnimatePresence, motion } from "framer-motion"
 import { NotificationsProvider } from "@mantine/notifications"
 import { Affix } from "@mantine/core"
@@ -53,7 +52,6 @@ export default function Layout({ children, location }) {
           {!loading && (
             <>
               <Navbar key="navbar" />
-              {/* <ScrollerMotion> */}
 
               {children}
 
@@ -85,8 +83,6 @@ export default function Layout({ children, location }) {
                 setOpen={setCookieModalOpen}
                 location={location}
               />
-
-              {/* </ScrollerMotion> */}
             </>
           )}
         </NotificationsProvider>

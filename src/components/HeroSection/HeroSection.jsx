@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Container, Text, Button, Modal } from "@mantine/core"
 import { Link } from "gatsby"
 import { ArrowDown } from "tabler-icons-react"
-import { motion, useTransform, useViewportScroll } from "framer-motion"
+import { motion, useTransform, useScroll } from "framer-motion"
 import PodcastLinksGrid from "../PodcastLinksGrid/PodcastLinksGrid"
 import useStyles from "./HeroSection.styles"
 import {
@@ -16,7 +16,7 @@ import {
 export default function HeroSection({ handleScroll }) {
   const { classes, cx } = useStyles()
   const [modalOpen, setModalOpen] = useState(false)
-  const { scrollYProgress } = useViewportScroll()
+  const { scrollYProgress } = useScroll()
   const yLinkedOpacity = useTransform(scrollYProgress, [0, 0.25], [0.8, 0])
   const yLinkedPosition = useTransform(scrollYProgress, [0, 0.25], [0, 60])
 
