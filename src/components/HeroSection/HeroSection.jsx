@@ -11,7 +11,7 @@ import {
   animHeroArrow,
 } from "../../utils/animations"
 
-const HeroImage = React.lazy(() => import("./Hero3DImage"))
+// const HeroImage = React.lazy(() => import("./Hero3DImage"))
 
 export default function HeroSection({ handleScroll }) {
   const { classes, cx } = useStyles()
@@ -29,9 +29,9 @@ export default function HeroSection({ handleScroll }) {
         }}
       >
         <Container size="xl" className={classes.wrapper}>
-          <React.Suspense fallback={null}>
+          {/* <React.Suspense fallback={null}>
             <HeroImage />
-          </React.Suspense>
+          </React.Suspense> */}
 
           <motion.div
             className={classes.inner}
