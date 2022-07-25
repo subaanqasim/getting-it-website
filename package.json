@@ -33,7 +33,7 @@
     "gatsby-plugin-gdpr-cookies": "^2.0.9",
     "gatsby-plugin-image": "^2.19.0",
     "gatsby-plugin-manifest": "^4.19.0",
-    "gatsby-plugin-mantine": "^4.0.0",
+    "gatsby-plugin-mantine": "^5.0.0",
     "gatsby-plugin-mdx": "^3.19.0",
     "gatsby-plugin-next-seo": "^1.10.0",
     "gatsby-plugin-sharp": "^4.19.0",
