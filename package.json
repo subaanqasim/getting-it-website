@@ -27,7 +27,7 @@
     "@splinetool/runtime": "^0.9.81",
     "formik": "^2.2.9",
     "framer-motion": "^6.5.1",
-    "gatsby": "^4.19.1",
+    "gatsby": "^4.22.1",
     "gatsby-plugin-advanced-sitemap": "^2.1.0",
     "gatsby-plugin-gatsby-cloud": "^4.19.0",
     "gatsby-plugin-gdpr-cookies": "^2.0.9",
